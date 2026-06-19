@@ -5,7 +5,7 @@
   "scripts": {
     "install:all": "npm install --prefix server && npm install --prefix client",
     "build": "npm run install:all && npm run build:client",
-    "build:client": "node client/node_modules/vite/bin/vite.js build --config client/vite.config.js",
+    "build:client": "cd client && node node_modules/vite/bin/vite.js build",
     "start": "node server/index.js"
   },
   "engines": {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import api from '../api/axios';
+import { imageUrl } from '../api/imageUrl';
 
 const TAGS = ['All', 'Cookies', 'Brownies', 'Cupcakes', 'Custom Orders', 'Events', 'Seasonal'];
 
@@ -68,7 +69,7 @@ export default function Gallery() {
                 onClick={() => setLightbox(img)}
               >
                 <img
-                  src={`http://localhost:5000${img.image_url}`}
+                  src={imageUrl(img.image_url)}
                   alt={img.caption || 'Gallery photo'}
                   className="w-full transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
@@ -105,7 +106,7 @@ export default function Gallery() {
               ✕
             </button>
             <img
-              src={`http://localhost:5000${lightbox.image_url}`}
+              src={imageUrl(lightbox.image_url)}
               alt={lightbox.caption || 'Gallery photo'}
               className="max-h-[85vh] max-w-full object-contain"
             />

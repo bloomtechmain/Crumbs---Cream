@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, MapPin, Clock, Heart } from 'lucide-react';
 import api from '../api/axios';
+import { imageUrl } from '../api/imageUrl';
 import TickerBanner from '../components/TickerBanner';
 
 export default function Home() {
@@ -87,7 +88,7 @@ export default function Home() {
                 <div className="aspect-square overflow-hidden bg-cream-100">
                   {p.image_url ? (
                     <img
-                      src={`http://localhost:5000${p.image_url}`}
+                      src={imageUrl(p.image_url)}
                       alt={p.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Plus, Edit2, Trash2, ToggleLeft, ToggleRight, X } from 'lucide-react';
 import api from '../../api/axios';
+import { imageUrl } from '../../api/imageUrl';
 import toast from 'react-hot-toast';
 
 const EMPTY = { name: '', description: '', price: '', category_id: '', image_url: '', is_available: true, is_featured: false, is_seasonal: false, sort_order: 0 };
@@ -106,7 +107,7 @@ export default function AdminProducts() {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gray-100 rounded flex-shrink-0 overflow-hidden">
                       {p.image_url ? (
-                        <img src={`http://localhost:5000${p.image_url}`} alt={p.name} className="w-full h-full object-cover" />
+                        <img src={imageUrl(p.image_url)} alt={p.name} className="w-full h-full object-cover" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-400 text-lg">🍰</div>
                       )}

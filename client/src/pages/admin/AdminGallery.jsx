@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Plus, Trash2, X, Upload } from 'lucide-react';
 import api from '../../api/axios';
+import { imageUrl } from '../../api/imageUrl';
 import toast from 'react-hot-toast';
 
 const TAGS = ['Cookies', 'Brownies', 'Cupcakes', 'Custom Orders', 'Events', 'Seasonal', 'Behind the Scenes'];
@@ -76,7 +77,7 @@ export default function AdminGallery() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {images.map(img => (
             <div key={img.id} className="group relative aspect-square bg-gray-100 rounded overflow-hidden">
-              <img src={`http://localhost:5000${img.image_url}`} alt={img.caption || ''} className="w-full h-full object-cover" />
+              <img src={imageUrl(img.image_url)} alt={img.caption || ''} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
                 <button
                   onClick={() => handleDelete(img)}

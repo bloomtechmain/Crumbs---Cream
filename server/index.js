@@ -25,13 +25,13 @@ app.use('/api/delivery',   require('./routes/delivery'));
 
 app.get('/api/health', (req, res) => res.json({ status: 'OK', app: 'Crumbs & Cream API' }));
 
-// Serve React static files in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.use((req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-  });
-}
+const publicDir = path.join(__dirname, 'public');
+app.use(express.static(publicDir));
+
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) return next();
+  res.sendFile(path.join(publicDir, 'index.html'), (err) => { if (err) next(err); });
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

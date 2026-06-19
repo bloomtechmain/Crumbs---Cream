@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #fffdf9;
+    color: #2E1A0E;
+    -webkit-font-smoothing: antialiased;
+  }
+  #root { min-height: 100vh; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brown-600 text-white px-8 py-3 font-medium tracking-widest uppercase text-sm hover:bg-brown-700 transition-all duration-300 inline-block;
+  }
+  .btn-outline {
+    @apply border-2 border-brown-600 text-brown-600 px-8 py-3 font-medium tracking-widest uppercase text-sm hover:bg-brown-600 hover:text-white transition-all duration-300 inline-block;
+  }
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl text-brown-700 font-bold;
+  }
+  .card {
+    @apply bg-white shadow-sm hover:shadow-md transition-shadow duration-300;
+  }
+}
+
+/* Ticker animation */
+.ticker-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+.ticker-content {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+  animation: ticker-left 50s linear infinite;
+}
+.ticker-content-reverse {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+  animation: ticker-right 55s linear infinite;
+}
+.ticker-wrap:hover .ticker-content,
+.ticker-wrap:hover .ticker-content-reverse {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes ticker-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Star rating */
+.stars { color: #d4a96a; }
+
+/* Gallery grid */
+.gallery-grid {
+  columns: 2;
+  column-gap: 1rem;
+}
+@media (min-width: 768px) {
+  .gallery-grid { columns: 3; }
+}
+@media (min-width: 1024px) {
+  .gallery-grid { columns: 4; }
+}
+.gallery-grid img {
+  width: 100%;
+  margin-bottom: 1rem;
+  break-inside: avoid;
+  border-radius: 2px;
+}

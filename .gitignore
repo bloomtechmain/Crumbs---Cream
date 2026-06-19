@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment variables
+server/.env
+.env
+
+# Build output
+client/dist/
+client/build/
+
+# Logs
+server/server.log
+server/server.err
+client/vite.log
+client/vite.err
+*.log
+
+# Uploads (user-generated content)
+server/uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Vite cache
+client/.vite/
+client/node_modules/.vite/

@@ -41,6 +41,22 @@ router.post('/', async (req, res) => {
   }
 });
 
+// POST /api/reviews/admin  — admin manual creation (auto-approved)
+router.post('/admin', auth, async (req, res) => {
+  const { customer_name, rating, review_text, product_name } = req.body;
+  if (!customer_name || !rating || !review_text)
+    return res.status(400).json({ error: 'Name, rating and review text are required' });
+  try {
+    const { rows } = await pool.query(
+      'INSERT INTO reviews (customer_name, rating, review_text, product_name, is_approved) VALUES ($1,$2,$3,$4,true) RETURNING *',
+      [customer_name, rating, review_text, product_name || null]
+    );
+    res.status(201).json(rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // PATCH /api/reviews/:id/approve  — admin
 router.patch('/:id/approve', auth, async (req, res) => {
   try {

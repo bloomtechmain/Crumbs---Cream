@@ -1,0 +1,20 @@
+# Crumbs & Cream by Yasasi
+
+  > A home bakery in South East Melbourne, Australia, specialising in made-to-order cookies, brownies, and cupcakes baked fresh with premium ingredients.
+
+  ## Pages
+  - [Home](https://crumbs-cream-production.up.railway.app/): Welcome page with featured products and the bakery story.
+  - [Products](https://crumbs-cream-production.up.railway.app/products): Full menu of cookies, brownies, cupcakes, and pastries with prices.
+  - [Gallery](https://crumbs-cream-production.up.railway.app/gallery): Photos of baked goods.
+  - [Delivery](https://crumbs-cream-production.up.railway.app/delivery): Delivery zones and info for South East Melbourne.
+  - [Reviews](https://crumbs-cream-production.up.railway.app/reviews): Customer reviews and ratings.
+  - [Contact](https://crumbs-cream-production.up.railway.app/contact): Place a custom order or get in touch.
+
+  ## Key Facts
+  - Business name: Crumbs & Cream by Yasasi
+  - Location: South East Melbourne, Victoria, Australia
+  - Specialties: Homemade cookies, brownies, cupcakes, pastries
+  - Made to order: Yes — baked fresh before delivery
+  - Order method: Instagram DM, Facebook message, or contact form
+  - Instagram: https://instagram.com/_crumbs.and.cream_
+  - Facebook: https://www.facebook.com/p/Crumbs-Cream-61577892432479

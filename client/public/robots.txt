@@ -1,0 +1,6 @@
+User-agent: *
+  Allow: /
+  Disallow: /admin
+  Disallow: /admin/
+
+  Sitemap: https://crumbs-cream-production.up.railway.app/sitemap.xml

@@ -80,11 +80,11 @@ export default function AdminDelivery() {
               <tr key={z.id} className={`hover:bg-gray-50 ${!z.is_available ? 'opacity-50' : ''}`}>
                 <td className="px-6 py-3 font-medium text-gray-800 text-sm">{z.suburb}</td>
                 <td className="px-6 py-3 text-gray-500 text-sm">{z.postcode}</td>
-                <td className="px-6 py-3 text-gray-700 text-sm">${parseFloat(z.min_order).toFixed(2)}</td>
+                <td className="px-6 py-3 text-gray-700 text-sm">A${parseFloat(z.min_order).toFixed(2)}</td>
                 <td className="px-6 py-3 text-sm font-medium">
                   {parseFloat(z.delivery_fee) === 0
                     ? <span className="text-green-600">FREE</span>
-                    : <span className="text-gray-700">${parseFloat(z.delivery_fee).toFixed(2)}</span>}
+                    : <span className="text-gray-700">A${parseFloat(z.delivery_fee).toFixed(2)}</span>}
                 </td>
                 <td className="px-6 py-3">
                   <button onClick={() => toggleAvail(z)} className={`flex items-center gap-1 text-sm ${z.is_available ? 'text-green-600' : 'text-gray-400'}`}>
@@ -127,12 +127,12 @@ export default function AdminDelivery() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-1">Delivery Fee ($)</label>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-1">Delivery Fee (A$)</label>
                   <input type="number" step="0.01" min="0" value={form.delivery_fee} onChange={e => setForm(f => ({ ...f, delivery_fee: e.target.value }))}
                     className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-brown-400" />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-1">Min. Order ($)</label>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-1">Min. Order (A$)</label>
                   <input type="number" step="0.01" min="0" value={form.min_order} onChange={e => setForm(f => ({ ...f, min_order: e.target.value }))}
                     className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-brown-400" />
                 </div>

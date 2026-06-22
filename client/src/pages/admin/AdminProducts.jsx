@@ -119,7 +119,7 @@ export default function AdminProducts() {
                   </div>
                 </td>
                 <td className="px-6 py-4 text-sm text-gray-500 capitalize">{p.category_name || '—'}</td>
-                <td className="px-6 py-4 text-sm font-bold text-gray-800">${parseFloat(p.price).toFixed(2)}</td>
+                <td className="px-6 py-4 text-sm font-bold text-gray-800">A${parseFloat(p.price).toFixed(2)}</td>
                 <td className="px-6 py-4">
                   <button onClick={() => toggleAvailability(p)} className={`flex items-center gap-1.5 text-sm font-medium ${p.is_available ? 'text-green-600' : 'text-gray-400'}`}>
                     {p.is_available ? <ToggleRight size={20} /> : <ToggleLeft size={20} />}

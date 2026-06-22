@@ -124,6 +124,21 @@ export default function Contact() {
                 ))}
               </ul>
             </div>
+
+            {/* Google Maps */}
+            <div className="mt-8">
+              <iframe
+                src="https://maps.google.com/maps?q=South+East+Melbourne+Victoria+Australia&t=&z=11&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="300"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Crumbs & Cream Location"
+                className="w-full"
+              />
+            </div>
           </div>
 
           {/* Form */}

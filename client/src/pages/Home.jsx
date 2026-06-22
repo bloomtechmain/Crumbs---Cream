@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Star, MapPin, Clock, Heart } from 'lucide-react';
 import api from '../api/axios';
 import { imageUrl } from '../api/imageUrl';
-import TickerBanner from '../components/TickerBanner';
-
 export default function Home() {
   const [featured, setFeatured] = useState([]);
   const [reviews, setReviews]   = useState([]);
@@ -49,9 +47,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Ticker */}
-      <TickerBanner />
 
       {/* Features */}
       <section className="py-16 bg-cream-50">
@@ -102,7 +97,7 @@ export default function Home() {
                   <p className="text-xs text-brown-400 uppercase tracking-widest mb-1">{p.category_name}</p>
                   <h3 className="font-serif text-lg font-semibold text-brown-800 mb-1">{p.name}</h3>
                   <p className="text-brown-500 text-sm mb-3 line-clamp-2">{p.description}</p>
-                  <p className="text-brown-700 font-bold text-lg">${parseFloat(p.price).toFixed(2)}</p>
+                  <p className="text-brown-700 font-bold text-lg">A${parseFloat(p.price).toFixed(2)}</p>
                 </div>
               </div>
             ))}

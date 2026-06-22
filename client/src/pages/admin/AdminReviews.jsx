@@ -51,8 +51,8 @@ export default function AdminReviews() {
   const shown    = tab === 'pending' ? pending : approved;
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-4 sm:p-8">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">Reviews</h1>
           <p className="text-gray-500 text-sm">{pending.length} pending approval</p>
@@ -152,8 +152,8 @@ export default function AdminReviews() {
             {tab === 'pending' ? 'No reviews awaiting approval.' : 'No approved reviews yet.'}
           </div>
         ) : shown.map(r => (
-          <div key={r.id} className="bg-white border border-gray-200 rounded-lg p-6">
-            <div className="flex items-start justify-between">
+          <div key={r.id} className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-0 sm:justify-between">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-1">
                   <span className="font-semibold text-gray-800">{r.customer_name}</span>
@@ -167,7 +167,7 @@ export default function AdminReviews() {
                 <p className="text-gray-600 text-sm italic mb-2">"{r.review_text}"</p>
                 <p className="text-gray-400 text-xs">{new Date(r.created_at).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
               </div>
-              <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+              <div className="flex items-center gap-2 sm:ml-4 flex-shrink-0">
                 {!r.is_approved && (
                   <button onClick={() => approve(r.id)} title="Approve"
                     className="flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 text-sm rounded hover:bg-green-100">

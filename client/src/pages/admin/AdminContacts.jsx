@@ -30,7 +30,7 @@ export default function AdminContacts() {
   const unread = contacts.filter(c => !c.is_read).length;
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-8">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-800">Customer Inquiries</h1>
         <p className="text-gray-500 text-sm">{unread > 0 ? `${unread} unread` : 'All caught up!'}</p>
@@ -42,7 +42,7 @@ export default function AdminContacts() {
         ) : contacts.map(c => (
           <div key={c.id} className={`border-b border-gray-100 last:border-0 ${!c.is_read ? 'bg-blue-50' : ''}`}>
             <div
-              className="flex items-center gap-4 px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-3 px-3 sm:px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors"
               onClick={() => handleExpand(c.id)}
             >
               <div className="flex-shrink-0 text-gray-400">
@@ -64,8 +64,8 @@ export default function AdminContacts() {
               </button>
             </div>
             {expanded === c.id && (
-              <div className="px-6 pb-5 bg-white border-t border-gray-100">
-                <div className="grid grid-cols-3 gap-4 mb-4 mt-4 text-sm">
+              <div className="px-3 sm:px-6 pb-5 bg-white border-t border-gray-100">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 mt-4 text-sm">
                   <div>
                     <p className="text-xs text-gray-400 uppercase tracking-wider mb-0.5">Email</p>
                     <a href={`mailto:${c.email}`} className="text-blue-600 hover:underline">{c.email}</a>

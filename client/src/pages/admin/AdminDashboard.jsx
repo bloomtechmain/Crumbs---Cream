@@ -35,13 +35,13 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="p-8">
-      <div className="mb-8">
+    <div className="p-4 sm:p-8">
+      <div className="mb-6 sm:mb-8">
         <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
         <p className="text-gray-500 text-sm mt-1">Welcome back! Here's an overview of your bakery.</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
         {cards.map(({ to, icon: Icon, label, value, color, badge }) => (
           <Link key={to} to={to} className={`border rounded-lg p-6 flex items-center gap-4 hover:shadow-md transition-shadow ${color}`}>
             <div className="flex-shrink-0">
@@ -61,7 +61,7 @@ export default function AdminDashboard() {
       {/* Quick Actions */}
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <h2 className="text-lg font-semibold text-gray-700 mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
           {[
             { to: '/admin/products', label: '+ Add Product',       style: 'bg-brown-600 text-white hover:bg-brown-700' },
             { to: '/admin/gallery',  label: '+ Upload Photo',       style: 'bg-brown-500 text-white hover:bg-brown-600' },

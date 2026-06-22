@@ -57,8 +57,8 @@ export default function AdminGallery() {
   };
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-4 sm:p-8">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">Gallery</h1>
           <p className="text-gray-500 text-sm">{images.length} photos</p>

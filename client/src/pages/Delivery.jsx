@@ -127,11 +127,11 @@ export default function Delivery() {
                     <tr key={z.id} className={`border-b border-brown-50 ${i % 2 === 0 ? 'bg-white' : 'bg-cream-50'}`}>
                       <td className="px-6 py-4 font-medium text-brown-700">{z.suburb}</td>
                       <td className="px-6 py-4 text-brown-500">{z.postcode}</td>
-                      <td className="px-6 py-4 text-brown-500">${parseFloat(z.min_order).toFixed(2)}</td>
+                      <td className="px-6 py-4 text-brown-500">A${parseFloat(z.min_order).toFixed(2)}</td>
                       <td className="px-6 py-4">
                         {parseFloat(z.delivery_fee) === 0
                           ? <span className="text-green-600 font-semibold">FREE</span>
-                          : <span className="text-brown-700 font-medium">${parseFloat(z.delivery_fee).toFixed(2)}</span>
+                          : <span className="text-brown-700 font-medium">A${parseFloat(z.delivery_fee).toFixed(2)}</span>
                         }
                       </td>
                     </tr>

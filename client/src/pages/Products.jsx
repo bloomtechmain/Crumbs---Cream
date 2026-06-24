@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { X } from 'lucide-react';
 import api from '../api/axios';
 import { imageUrl } from '../api/imageUrl';
 
@@ -9,6 +10,7 @@ export default function Products() {
   const [products, setProducts]     = useState([]);
   const [active, setActive]         = useState('all');
   const [loading, setLoading]       = useState(true);
+  const [selected, setSelected]     = useState(null);
 
   useEffect(() => {
     Promise.all([
@@ -70,7 +72,6 @@ export default function Products() {
           <div className="text-center py-20 text-brown-400">No products found.</div>
         ) : (
           <>
-            {/* Group by category when viewing all */}
             {active === 'all' ? (
               categories.map(cat => {
                 const items = filtered.filter(p => p.category_slug === cat.slug);
@@ -85,12 +86,12 @@ export default function Products() {
                       </div>
                       <div className="flex-1 h-px bg-brown-100 ml-4" />
                     </div>
-                    <ProductGrid items={items} />
+                    <ProductGrid items={items} onSelect={setSelected} />
                   </div>
                 );
               })
             ) : (
-              <ProductGrid items={filtered} />
+              <ProductGrid items={filtered} onSelect={setSelected} />
             )}
           </>
         )}
@@ -102,22 +103,81 @@ export default function Products() {
         <p className="text-brown-500 mb-8 max-w-lg mx-auto">
           Planning a birthday, baby shower or special event? We'd love to create something unique just for you.
         </p>
-        <a
-          href="/contact"
-          className="btn-primary"
-        >
-          Get in Touch
-        </a>
+        <a href="/contact" className="btn-primary">Get in Touch</a>
       </div>
+
+      {/* Product Detail Modal */}
+      {selected && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-60"
+          onClick={() => setSelected(null)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Image */}
+            <div className="aspect-video bg-cream-100 relative">
+              {selected.image_url ? (
+                <img
+                  src={imageUrl(selected.image_url)}
+                  alt={selected.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-brown-50">
+                  <span className="text-7xl">{CATEGORY_EMOJI[selected.category_slug] || '🍰'}</span>
+                </div>
+              )}
+              {selected.is_seasonal && (
+                <span className="absolute top-3 left-3 bg-brown-500 text-white text-xs px-3 py-1 rounded-full uppercase tracking-widest">
+                  Seasonal
+                </span>
+              )}
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-3 right-3 bg-white rounded-full p-1.5 shadow hover:bg-brown-50 transition-colors"
+              >
+                <X size={18} className="text-brown-700" />
+              </button>
+            </div>
+
+            {/* Details */}
+            <div className="p-6">
+              <p className="text-xs text-brown-400 uppercase tracking-widest mb-1">{selected.category_name}</p>
+              <h3 className="font-serif text-2xl font-bold text-brown-800 mb-3">{selected.name}</h3>
+              {selected.description && (
+                <p className="text-brown-500 text-sm leading-relaxed mb-5">{selected.description}</p>
+              )}
+              <div className="flex items-center justify-between">
+                <span className="text-brown-700 font-bold text-2xl">A${parseFloat(selected.price).toFixed(2)}</span>
+                <span className={`text-xs px-3 py-1.5 rounded-full font-medium ${selected.is_available ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>
+                  {selected.is_available ? 'Available' : 'Unavailable'}
+                </span>
+              </div>
+              <a
+                href="/contact"
+                className="mt-5 block text-center bg-brown-600 hover:bg-brown-700 text-white font-medium py-3 rounded-lg transition-colors"
+              >
+                Order Now
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-function ProductGrid({ items }) {
+function ProductGrid({ items, onSelect }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {items.map(p => (
-        <div key={p.id} className="card group overflow-hidden">
+        <div
+          key={p.id}
+          className="card group overflow-hidden cursor-pointer"
+          onClick={() => onSelect(p)}
+        >
           <div className="aspect-square overflow-hidden bg-cream-100">
             {p.image_url ? (
               <img

@@ -139,7 +139,7 @@ function ProductGrid({ items }) {
           <div className="p-5">
             <p className="text-xs text-brown-400 uppercase tracking-widest mb-1">{p.category_name}</p>
             <h3 className="font-serif text-base font-semibold text-brown-800 mb-2 leading-snug">{p.name}</h3>
-            <p className="text-brown-500 text-sm mb-4 line-clamp-2 leading-relaxed">{p.description}</p>
+            <p className="text-brown-500 text-sm mb-4 line-clamp-1 leading-relaxed">{p.description}</p>
             <div className="flex items-center justify-between">
               <span className="text-brown-700 font-bold text-xl">A${parseFloat(p.price).toFixed(2)}</span>
               <span className={`text-xs px-2 py-1 rounded-full ${p.is_available ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>

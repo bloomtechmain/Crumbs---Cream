@@ -19,8 +19,11 @@ client/vite.log
 client/vite.err
 *.log
 
-# Uploads (user-generated content)
-server/uploads/
+# Uploads — tracked for initial product images; future uploads ignored by Railway ephemeral fs
+# server/uploads/
+
+# Local logs (do not commit)
+DEPLOYMENT_LOG_*.md
 
 # OS files
 .DS_Store

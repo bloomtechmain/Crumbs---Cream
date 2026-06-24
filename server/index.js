@@ -20,17 +20,20 @@ async function applyImageMigration() {
   }
 
   const galleryImages = [
-    { url: '/uploads/ferrero-rocher-cookie.jpg',       caption: 'Ferrero Rocher Cookie',        tag: 'cookies', sort: 1 },
-    { url: '/uploads/kinder-bueno-cookie.jpg',         caption: 'Kinder Bueno Cookie',          tag: 'cookies', sort: 2 },
-    { url: '/uploads/biscoff-cookie.jpg',              caption: 'Biscoff Cookie',               tag: 'cookies', sort: 3 },
-    { url: '/uploads/oreo-white-chocolate-cookie.jpg', caption: 'Oreo & White Chocolate Cookie',tag: 'cookies', sort: 4 },
+    { url: '/uploads/ferrero-rocher-cookie.jpg',       caption: 'Ferrero Rocher Cookie',         tag: 'cookies', sort: 1 },
+    { url: '/uploads/kinder-bueno-cookie.jpg',         caption: 'Kinder Bueno Cookie',           tag: 'cookies', sort: 2 },
+    { url: '/uploads/biscoff-cookie.jpg',              caption: 'Biscoff Cookie',                tag: 'cookies', sort: 3 },
+    { url: '/uploads/oreo-white-chocolate-cookie.jpg', caption: 'Oreo & White Chocolate Cookie', tag: 'cookies', sort: 4 },
   ];
   for (const { url, caption, tag, sort } of galleryImages) {
-    await pool.query(
-      `INSERT INTO gallery_images (image_url, caption, tag, sort_order)
-       SELECT $1,$2,$3,$4 WHERE NOT EXISTS (SELECT 1 FROM gallery_images WHERE image_url = $1)`,
-      [url, caption, tag, sort]
-    );
+    const exists = await pool.query('SELECT 1 FROM gallery_images WHERE image_url = $1', [url]);
+    if (exists.rows.length === 0) {
+      await pool.query(
+        'INSERT INTO gallery_images (image_url, caption, tag, sort_order) VALUES ($1, $2, $3, $4::integer)',
+        [url, caption, tag, sort]
+      );
+      console.log(`Gallery: inserted ${caption}`);
+    }
   }
 }
 

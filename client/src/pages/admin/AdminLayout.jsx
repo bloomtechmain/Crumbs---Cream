@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import {
   LayoutDashboard, Package, ImageIcon, Star, MessageSquare, Truck, LogOut, Menu, X
 } from 'lucide-react';
+import logo from '../../assets/logo.jpg';
 
 const NAV = [
   { to: '/admin',           icon: LayoutDashboard, label: 'Dashboard',   end: true },
@@ -74,9 +75,7 @@ export default function AdminLayout() {
       <aside className="hidden lg:flex w-64 bg-brown-800 flex-col flex-shrink-0 min-h-screen">
         <div className="p-6 border-b border-brown-700">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-brown-500 rounded-full flex items-center justify-center">
-              <span className="text-white font-serif font-bold text-sm">C&C</span>
-            </div>
+            <img src={logo} alt="Crumbs & Cream" className="w-10 h-10 object-contain rounded-full bg-white" />
             <div>
               <p className="text-white font-semibold text-sm">Crumbs & Cream</p>
               <p className="text-brown-300 text-xs">Admin Panel</p>
@@ -93,9 +92,7 @@ export default function AdminLayout() {
           <aside className="relative w-64 h-full bg-brown-800 flex flex-col">
             <div className="p-5 border-b border-brown-700 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 bg-brown-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-serif font-bold text-xs">C&C</span>
-                </div>
+                <img src={logo} alt="Crumbs & Cream" className="w-9 h-9 object-contain rounded-full bg-white" />
                 <div>
                   <p className="text-white font-semibold text-sm">Crumbs & Cream</p>
                   <p className="text-brown-300 text-xs">Admin Panel</p>

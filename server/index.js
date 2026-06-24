@@ -3,6 +3,23 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
+const pool = require('./db/pool');
+
+async function applyImageMigration() {
+  const updates = [
+    { name: 'Ferrero Rocher Cookie',        url: '/uploads/ferrero-rocher-cookie.jpg' },
+    { name: 'Kinder Bueno Cookie',           url: '/uploads/kinder-bueno-cookie.jpg' },
+    { name: 'Biscoff Cookie',                url: '/uploads/biscoff-cookie.jpg' },
+    { name: 'Oreo & White Chocolate Cookie', url: '/uploads/oreo-white-chocolate-cookie.jpg' },
+  ];
+  for (const { name, url } of updates) {
+    await pool.query(
+      'UPDATE products SET image_url = $1 WHERE name = $2 AND (image_url IS NULL OR image_url = $1)',
+      [url, name]
+    );
+  }
+}
+
 const app = express();
 
 app.use(cors({
@@ -39,4 +56,7 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, async () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+  await applyImageMigration().catch(err => console.error('Image migration error:', err));
+});

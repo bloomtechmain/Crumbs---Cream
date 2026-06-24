@@ -3,6 +3,7 @@ import { MapPin, Mail, Phone } from 'lucide-react';
 import InstagramIcon from './InstagramIcon';
 import FacebookIcon from './FacebookIcon';
 import TickerBanner from './TickerBanner';
+import logo from '../assets/logo.jpg';
 
 export default function Footer() {
   return (
@@ -15,9 +16,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full bg-brown-500 flex items-center justify-center">
-                <span className="text-white font-serif font-bold text-lg">C&C</span>
-              </div>
+              <img src={logo} alt="Crumbs & Cream" className="w-12 h-12 object-contain rounded-full bg-white" />
               <div>
                 <p className="font-serif font-bold text-white text-xl">Crumbs & Cream</p>
                 <p className="text-brown-300 text-xs tracking-widest uppercase">by Yasasi</p>

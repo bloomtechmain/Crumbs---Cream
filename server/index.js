@@ -6,16 +6,30 @@ require('dotenv').config();
 const pool = require('./db/pool');
 
 async function applyImageMigration() {
-  const updates = [
+  const productImages = [
     { name: 'Ferrero Rocher Cookie',        url: '/uploads/ferrero-rocher-cookie.jpg' },
     { name: 'Kinder Bueno Cookie',           url: '/uploads/kinder-bueno-cookie.jpg' },
     { name: 'Biscoff Cookie',                url: '/uploads/biscoff-cookie.jpg' },
     { name: 'Oreo & White Chocolate Cookie', url: '/uploads/oreo-white-chocolate-cookie.jpg' },
   ];
-  for (const { name, url } of updates) {
+  for (const { name, url } of productImages) {
     await pool.query(
       'UPDATE products SET image_url = $1 WHERE name = $2 AND (image_url IS NULL OR image_url = $1)',
       [url, name]
+    );
+  }
+
+  const galleryImages = [
+    { url: '/uploads/ferrero-rocher-cookie.jpg',       caption: 'Ferrero Rocher Cookie',        tag: 'cookies', sort: 1 },
+    { url: '/uploads/kinder-bueno-cookie.jpg',         caption: 'Kinder Bueno Cookie',          tag: 'cookies', sort: 2 },
+    { url: '/uploads/biscoff-cookie.jpg',              caption: 'Biscoff Cookie',               tag: 'cookies', sort: 3 },
+    { url: '/uploads/oreo-white-chocolate-cookie.jpg', caption: 'Oreo & White Chocolate Cookie',tag: 'cookies', sort: 4 },
+  ];
+  for (const { url, caption, tag, sort } of galleryImages) {
+    await pool.query(
+      `INSERT INTO gallery_images (image_url, caption, tag, sort_order)
+       SELECT $1,$2,$3,$4 WHERE NOT EXISTS (SELECT 1 FROM gallery_images WHERE image_url = $1)`,
+      [url, caption, tag, sort]
     );
   }
 }

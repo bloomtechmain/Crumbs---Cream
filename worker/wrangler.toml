@@ -1,0 +1,14 @@
+name = "crumbs-and-cream-gallery"
+main = "src/index.ts"
+compatibility_date = "2026-01-01"
+
+[vars]
+GOOGLE_DRIVE_FOLDER_ID = "1O0xxvztuji7FVgFQ1-S_zY4f9JC1bQ9b"
+
+# Secrets (set via `wrangler secret put <NAME>`, not stored here):
+#   GOOGLE_SERVICE_ACCOUNT_EMAIL
+#   GOOGLE_PRIVATE_KEY
+#   EMAILJS_SERVICE_ID
+#   EMAILJS_TEMPLATE_ID
+#   EMAILJS_PUBLIC_KEY
+#   EMAILJS_PRIVATE_KEY

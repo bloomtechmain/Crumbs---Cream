@@ -1,0 +1,18 @@
+{
+  "name": "crumbs-and-cream",
+  "version": "1.0.0",
+  "description": "Crumbs & Cream bakery website",
+  "scripts": {
+    "install:all": "npm install --prefix client",
+    "build": "npm run install:all && npm run build:client",
+    "build:client": "cd client && node node_modules/vite/bin/vite.js build",
+    "postbuild": "node client/scripts/prerender.mjs",
+    "start": "serve client/dist -l 3000"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "serve": "^14.2.6"
+  }
+}

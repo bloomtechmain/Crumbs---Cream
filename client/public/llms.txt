@@ -1,0 +1,21 @@
+# Crumbs & Cream
+
+  > A home bakery in South East Melbourne (Lynbrook, Victoria, Australia), specialising in made-to-order cookies, brownies, cupcakes and matcha treats baked fresh with premium ingredients.
+
+  ## Pages
+  - [Home](https://crumbs-cream-production.up.railway.app/): Welcome page with featured products and the bakery story.
+  - [Products](https://crumbs-cream-production.up.railway.app/products): Build-your-own box menu of cookies, brownies, cupcakes and matcha treats with prices.
+  - [Gallery](https://crumbs-cream-production.up.railway.app/gallery): Photos of baked goods.
+  - [Delivery](https://crumbs-cream-production.up.railway.app/delivery): Delivery zones and info for Lynbrook and surrounding South East Melbourne suburbs.
+  - [Reviews](https://crumbs-cream-production.up.railway.app/reviews): Customer reviews and ratings.
+  - [Contact](https://crumbs-cream-production.up.railway.app/contact): Place an order or get in touch by email, Instagram or Facebook.
+
+  ## Key Facts
+  - Business name: Crumbs & Cream
+  - Location: Lynbrook, South East Melbourne, Victoria, Australia
+  - Specialties: Homemade cookies, brownies, cupcakes, matcha treats
+  - Made to order: Yes — baked fresh before delivery
+  - Order method: Email (orders.crumbsandcream@gmail.com) — preferred; Instagram DM or Facebook message also accepted
+  - Email: orders.crumbsandcream@gmail.com
+  - Instagram: https://instagram.com/_crumbs.and.cream_
+  - Facebook: https://www.facebook.com/p/Crumbs-Cream-61577892432479

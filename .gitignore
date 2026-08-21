@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment variables
+server/.env
+.env
+
+# Build output
+client/dist/
+client/build/
+server/public/
+
+# Logs
+server/server.log
+server/server.err
+client/vite.log
+client/vite.err
+*.log
+
+# Uploads — tracked for initial product images; future uploads ignored by Railway ephemeral fs
+# server/uploads/
+
+# Local logs (do not commit)
+DEPLOYMENT_LOG_*.md
+WORK_LOG_*.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Google service account credentials (never commit)
+*.json.key
+bloomtechusa-*.json
+*-f7c456dcb28b.json
+
+# Vite cache
+client/.vite/
+client/node_modules/.vite/

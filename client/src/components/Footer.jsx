@@ -4,6 +4,7 @@ import InstagramIcon from './InstagramIcon';
 import FacebookIcon from './FacebookIcon';
 import TickerBanner from './TickerBanner';
 import logo from '../assets/logo.jpg';
+import rizeDigitLogo from '../assets/rizedigit-logo.jpeg';
 
 export default function Footer() {
   return (
@@ -120,8 +121,23 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-brown-700 py-4">
-        <p className="text-center text-brown-400 text-xs">
+        <p className="flex flex-wrap items-center justify-center gap-2 text-center text-brown-400 text-xs">
           © {new Date().getFullYear()} Crumbs & Cream. All rights reserved. Lynbrook, VIC.
+          <span className="inline-flex items-center gap-2">
+            Built by
+            <a
+              href="https://www.facebook.com/p/RizeDigit-61555703206063/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="RizeDigit"
+            >
+              <img
+                src={rizeDigitLogo}
+                alt="RizeDigit"
+                className="h-5 w-auto opacity-50 hover:opacity-100 transition-opacity"
+              />
+            </a>
+          </span>
         </p>
       </div>
     </footer>

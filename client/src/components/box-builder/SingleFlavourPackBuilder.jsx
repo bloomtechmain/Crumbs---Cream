@@ -44,7 +44,7 @@ const SingleFlavourPackBuilder = forwardRef(function SingleFlavourPackBuilder(
           key={f.id}
           type="button"
           onClick={() => setFlavourId(f.id)}
-          className={`border text-left flex flex-col h-full transition-colors ${
+          className={`border text-center flex flex-col h-full transition-colors ${
             flavourId === f.id ? 'border-brown-600 ring-1 ring-brown-600' : 'border-brown-100 hover:border-brown-300'
           }`}
         >

@@ -1,4 +1,4 @@
-import productsHero from '../assets/products-hero.jpg';
+import productsHero from '../assets/products-hero.webp';
 import BoxBuilder from '../components/box-builder/BoxBuilder';
 import usePageMeta from '../hooks/usePageMeta';
 import { PAGE_META } from '../data/pageMeta';

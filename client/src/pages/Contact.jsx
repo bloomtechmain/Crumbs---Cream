@@ -1,7 +1,7 @@
 import { MapPin, Mail, Clock, Phone } from 'lucide-react';
 import InstagramIcon from '../components/InstagramIcon';
 import FacebookIcon from '../components/FacebookIcon';
-import pageHero from '../assets/products-hero.jpg';
+import pageHero from '../assets/products-hero.webp';
 import usePageMeta from '../hooks/usePageMeta';
 import { PAGE_META } from '../data/pageMeta';
 

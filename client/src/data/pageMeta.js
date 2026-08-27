@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://crumbs-cream-production.up.railway.app';
+export const SITE_URL = 'https://crumbsandcream.com.au';
 export const DEFAULT_TITLE = 'Crumbs & Cream | Homemade Cookies & Cakes, South East Melbourne';
 export const DEFAULT_DESCRIPTION = 'Crumbs & Cream — homemade cookies, brownies & cupcakes baked fresh in South East Melbourne. Order online today.';
 

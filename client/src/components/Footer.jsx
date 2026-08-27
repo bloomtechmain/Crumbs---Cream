@@ -3,8 +3,8 @@ import { MapPin, Mail, Phone } from 'lucide-react';
 import InstagramIcon from './InstagramIcon';
 import FacebookIcon from './FacebookIcon';
 import TickerBanner from './TickerBanner';
-import logo from '../assets/logo.jpg';
-import rizeDigitLogo from '../assets/rizedigit-logo.jpeg';
+import logo from '../assets/logo.webp';
+import rizeDigitLogo from '../assets/rizedigit-logo.webp';
 
 export default function Footer() {
   return (
@@ -26,37 +26,6 @@ export default function Footer() {
               Homemade cookies, brownies & cupcakes baked with love in South East Melbourne.
               Where every crumb counts.
             </p>
-            {/* Social links */}
-            <div className="flex gap-3">
-              <a
-                href="https://instagram.com/_crumbs.and.cream_"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brown-300 hover:text-white transition-colors text-sm"
-                title="Instagram"
-              >
-                <InstagramIcon size={18} />
-              </a>
-              <a
-                href="https://www.facebook.com/p/Crumbs-Cream-61577892432479"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brown-300 hover:text-white transition-colors text-sm"
-                title="Facebook"
-              >
-                <FacebookIcon size={18} />
-              </a>
-            </div>
-            <div className="mt-3 space-y-1">
-              <a href="https://instagram.com/_crumbs.and.cream_" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brown-300 hover:text-white transition-colors text-sm">
-                <InstagramIcon size={14} /> @_crumbs.and.cream_
-              </a>
-              <a href="https://www.facebook.com/p/Crumbs-Cream-61577892432479" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brown-300 hover:text-white transition-colors text-sm">
-                <FacebookIcon size={14} /> Crumbs & Cream
-              </a>
-            </div>
           </div>
 
           {/* Quick links */}

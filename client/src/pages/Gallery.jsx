@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import pageHero from '../assets/products-hero.jpg';
+import pageHero from '../assets/products-hero.webp';
 import usePageMeta from '../hooks/usePageMeta';
 import { PAGE_META } from '../data/pageMeta';
 

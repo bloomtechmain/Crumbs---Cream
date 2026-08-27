@@ -1,6 +1,6 @@
 import { MapPin, Clock, Package, CheckCircle, AlertCircle } from 'lucide-react';
 import zones from '../data/deliveryZones';
-import pageHero from '../assets/products-hero.jpg';
+import pageHero from '../assets/products-hero.webp';
 import usePageMeta from '../hooks/usePageMeta';
 import { PAGE_META } from '../data/pageMeta';
 import { buildDeliveryServiceSchema } from '../data/structuredData';

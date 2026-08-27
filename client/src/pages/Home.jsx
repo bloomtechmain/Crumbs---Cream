@@ -152,28 +152,28 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <img
-                  src="/images/biscoff-cookie.jpg"
+                  src="/images/biscoff-cookie.webp"
                   alt="Biscoff Cookie, handmade by Crumbs & Cream"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <img
-                  src="/images/matcha-cheesecake-cookie.jpg"
+                  src="/images/matcha-cheesecake-cookie.webp"
                   alt="Matcha Cheesecake Cookie, handmade by Crumbs & Cream"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <img
-                  src="/images/matcha-strawberry-cookie.jpg"
+                  src="/images/matcha-strawberry-cookie.webp"
                   alt="Matcha Strawberry Cookie, handmade by Crumbs & Cream"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <img
-                  src="/images/assorted-cookies.jpg"
+                  src="/images/assorted-cookies.webp"
                   alt="Freshly baked cookies from Crumbs & Cream"
                   className="w-full h-full object-cover object-right"
                 />

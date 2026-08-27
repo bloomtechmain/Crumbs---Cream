@@ -169,15 +169,15 @@ function FlavourGrid({ flavours, allocation, remaining, emoji, setQty, addOne })
                 </span>
               )}
             </button>
-            <div className="p-2.5 flex flex-col flex-1">
-              <p className="text-sm font-medium text-brown-700 leading-snug line-clamp-2 min-h-[2.5rem]">{f.name}</p>
+            <div className="p-2.5 flex flex-col flex-1 text-center">
+              <p className="text-sm font-medium text-brown-700 leading-snug line-clamp-3 min-h-[3.75rem]">{f.name}</p>
               <p className="text-brown-400 text-xs mb-2">{formatPrice(f.price)} each</p>
               <QuantityStepper
                 value={qty}
                 onChange={q => setQty(f.id, q)}
                 min={0}
                 max={qty + remaining}
-                className="mt-auto"
+                className="mt-auto mx-auto"
               />
             </div>
           </div>

@@ -1,5 +1,5 @@
 import reviews from '../data/reviews';
-import pageHero from '../assets/products-hero.jpg';
+import pageHero from '../assets/products-hero.webp';
 import usePageMeta from '../hooks/usePageMeta';
 import { PAGE_META } from '../data/pageMeta';
 import { buildReviewSchema } from '../data/structuredData';

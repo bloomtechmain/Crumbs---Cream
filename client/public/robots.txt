@@ -1,4 +1,4 @@
 User-agent: *
   Allow: /
 
-  Sitemap: https://crumbs-cream-production.up.railway.app/sitemap.xml
+  Sitemap: https://crumbsandcream.com.au/sitemap.xml

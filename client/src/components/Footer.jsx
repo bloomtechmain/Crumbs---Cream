@@ -134,7 +134,7 @@ export default function Footer() {
               <img
                 src={rizeDigitLogo}
                 alt="RizeDigit"
-                className="h-5 w-auto opacity-50 hover:opacity-100 transition-opacity"
+                className="h-5 w-auto"
               />
             </a>
           </span>

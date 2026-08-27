@@ -94,7 +94,7 @@ export default function Home() {
                     <img
                       src={p.image_url}
                       alt={p.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${p.id === 1 ? 'object-right-bottom' : ''}`}
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
@@ -152,30 +152,30 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <img
-                  src="/images/mm-nutella-cookie.jpg"
-                  alt="M&M & Nutella Cookie, handmade by Crumbs & Cream"
+                  src="/images/biscoff-cookie.jpg"
+                  alt="Biscoff Cookie, handmade by Crumbs & Cream"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <img
-                  src="/images/dubai-chocolate-cookie.jpg"
-                  alt="Dubai Chocolate Cookie, handmade by Crumbs & Cream"
+                  src="/images/matcha-cheesecake-cookie.jpg"
+                  alt="Matcha Cheesecake Cookie, handmade by Crumbs & Cream"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
+                <img
+                  src="/images/matcha-strawberry-cookie.jpg"
+                  alt="Matcha Strawberry Cookie, handmade by Crumbs & Cream"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
+                <img
+                  src="/images/assorted-cookies.jpg"
+                  alt="Freshly baked cookies from Crumbs & Cream"
                   className="w-full h-full object-cover object-right"
-                />
-              </div>
-              <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
-                <img
-                  src="/images/vanilla-bean-cupcake.jpg"
-                  alt="Vanilla Bean Cupcake, handmade by Crumbs & Cream"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
-                <img
-                  src="/images/caramilk-brownie.jpg"
-                  alt="Caramilk Brownie, handmade by Crumbs & Cream"
-                  className="w-full h-full object-cover"
                 />
               </div>
             </div>

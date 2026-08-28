@@ -152,7 +152,7 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <img
-                  src="/images/biscoff-cookie.webp"
+                  src="/images/biscoff-cookie.webp?v=2"
                   alt="Biscoff Cookie, handmade by Crumbs & Cream"
                   className="w-full h-full object-cover"
                 />

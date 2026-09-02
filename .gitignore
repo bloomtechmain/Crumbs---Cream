@@ -12,6 +12,12 @@ client/dist/
 client/build/
 server/public/
 
+# Full-resolution image masters — large, not needed by the build.
+# The build ships the generated variants in client/public/images/.
+# Regenerate with `cd client && npm run optimize:images`.
+client/images-src/
+/original images/
+
 # Logs
 server/server.log
 server/server.err

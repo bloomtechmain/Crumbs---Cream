@@ -2,6 +2,7 @@ import { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { Star } from 'lucide-react';
 import QuantityStepper from './QuantityStepper';
 import { formatPrice } from './orderSummary';
+import ProductImage from '../ProductImage';
 
 const FlavourAllocatorBuilder = forwardRef(function FlavourAllocatorBuilder(
   { title, subtitle, unitLabel, sizes, flavours, emoji, onCommit, onPendingChange, priceOverride, tierGroups, allowPartial = false },
@@ -150,10 +151,11 @@ function FlavourGrid({ flavours, allocation, remaining, emoji, setQty, addOne })
                 </span>
               )}
               {f.image_url ? (
-                <img
+                <ProductImage
                   src={f.image_url}
                   alt={f.name}
-                  className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${f.id === 1 ? 'object-right-bottom' : ''}`}
+                  sizes="(min-width:1024px) 230px, (min-width:640px) 300px, 45vw"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-5xl">{emoji}</div>

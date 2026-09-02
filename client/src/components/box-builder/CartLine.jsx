@@ -1,12 +1,13 @@
 import { Trash2 } from 'lucide-react';
 import { formatPrice } from './orderSummary';
+import ProductImage from '../ProductImage';
 
 export default function CartLine({ item, emoji, onRemove, showLineTotal = true }) {
   return (
     <li className="flex items-center gap-2.5">
       <div className="w-10 h-10 flex-shrink-0 bg-cream-100 overflow-hidden">
         {item.image_url ? (
-          <img src={item.image_url} alt={item.name} className="w-full h-full object-cover" />
+          <ProductImage src={item.image_url} alt={item.name} sizes="40px" className="w-full h-full object-cover" />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-lg">{emoji}</div>
         )}

@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Star, MapPin, Clock, Sparkles, Wheat } from 'lucide-react';
 import allProducts from '../data/products';
 import allReviews from '../data/reviews';
+import ProductImage from '../components/ProductImage';
+import homeHero from '../assets/home-hero.webp';
 
 // Display order for the Best Sellers section. Membership is controlled by each
 // product's is_featured flag in data/products.js; this list only orders them.
@@ -26,7 +28,7 @@ export default function Home() {
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-brown-900">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1600&q=80')" }}
+          style={{ backgroundImage: `url(${homeHero})` }}
         />
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
           <p className="text-cream-300 text-sm tracking-[0.3em] uppercase mb-6 font-medium">
@@ -91,10 +93,11 @@ export default function Home() {
               <div key={p.id} className="card group overflow-hidden">
                 <div className="aspect-square overflow-hidden bg-cream-100">
                   {p.image_url ? (
-                    <img
+                    <ProductImage
                       src={p.image_url}
                       alt={p.name}
-                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${p.id === 1 ? 'object-right-bottom' : ''}`}
+                      sizes="(min-width:1024px) 400px, (min-width:640px) 50vw, 100vw"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
@@ -151,30 +154,34 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
-                <img
-                  src="/images/biscoff-cookie.webp?v=2"
+                <ProductImage
+                  src="/images/biscoff-cookie.webp?v=3"
                   alt="Biscoff Cookie, handmade by Crumbs & Cream"
+                  sizes="(min-width:768px) 320px, 45vw"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
-                <img
+                <ProductImage
                   src="/images/matcha-cheesecake-cookie.webp"
                   alt="Matcha Cheesecake Cookie, handmade by Crumbs & Cream"
+                  sizes="(min-width:768px) 320px, 45vw"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
-                <img
+                <ProductImage
                   src="/images/matcha-strawberry-cookie.webp"
                   alt="Matcha Strawberry Cookie, handmade by Crumbs & Cream"
+                  sizes="(min-width:768px) 320px, 45vw"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
-                <img
+                <ProductImage
                   src="/images/assorted-cookies.webp"
                   alt="Freshly baked cookies from Crumbs & Cream"
+                  sizes="(min-width:768px) 320px, 45vw"
                   className="w-full h-full object-cover object-right"
                 />
               </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { formatPrice } from './orderSummary';
+import ProductImage from '../ProductImage';
 
 // Shared by Cupcakes and Brownies: pick one flavour, then a fixed box/pack
 // size, and the price comes straight from a lookup table — not per-unit
@@ -50,7 +51,12 @@ const SingleFlavourPackBuilder = forwardRef(function SingleFlavourPackBuilder(
         >
           <div className="relative w-full aspect-square bg-cream-100 overflow-hidden">
             {f.image_url ? (
-              <img src={f.image_url} alt={f.name} className="w-full h-full object-cover" />
+              <ProductImage
+                src={f.image_url}
+                alt={f.name}
+                sizes="(min-width:640px) 300px, 45vw"
+                className="w-full h-full object-cover"
+              />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-5xl">{emoji}</div>
             )}

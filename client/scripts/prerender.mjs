@@ -63,20 +63,70 @@ async function main() {
       await vite.ssrLoadModule('/src/data/pageMeta.js');
 
     const template = fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf-8');
+    const assetUrlMap = loadAssetUrlMap(DIST_DIR);
 
     for (const route of Object.keys(PAGE_META)) {
       const meta = PAGE_META[route];
       const appHtml = render(route);
-      const html = buildRouteHtml(template, appHtml, meta, SITE_URL, DEFAULT_TITLE, DEFAULT_DESCRIPTION);
+      let html = buildRouteHtml(template, appHtml, meta, SITE_URL, DEFAULT_TITLE, DEFAULT_DESCRIPTION);
+      html = resolveDevAssetUrls(html, route, assetUrlMap);
 
-      const outDir = route === '/' ? DIST_DIR : path.join(DIST_DIR, route);
-      fs.mkdirSync(outDir, { recursive: true });
-      fs.writeFileSync(path.join(outDir, 'index.html'), html);
-      console.log(`  prerendered ${route}`);
+      // Flat file, not `dist/<route>/index.html` — Cloudflare Pages
+      // auto-redirects (308) directory-style `foo/index.html` requests
+      // from `/foo` to `/foo/`, which would contradict the non-trailing-
+      // slash canonical URL above. A flat `foo.html` is served by
+      // Cloudflare at `/foo` with a 200, no redirect.
+      const outFile = route === '/'
+        ? path.join(DIST_DIR, 'index.html')
+        : path.join(DIST_DIR, `${route.slice(1)}.html`);
+      fs.mkdirSync(path.dirname(outFile), { recursive: true });
+      fs.writeFileSync(outFile, html);
+      console.log(`  prerendered ${route} -> ${path.relative(DIST_DIR, outFile)}`);
     }
   } finally {
     await vite.close();
+    fs.rmSync(path.join(DIST_DIR, '.vite'), { recursive: true, force: true });
   }
+}
+
+// vite.ssrLoadModule() runs against Vite's *dev* module graph, so any
+// `import x from '../assets/foo.webp'` resolves to the dev URL
+// `/src/assets/foo.webp` instead of the hashed production URL `vite build`
+// already wrote to dist/assets/. dist/.vite/manifest.json (from
+// `build.manifest: true` in vite.config.js) maps source asset paths to
+// their real hashed output, so we can rewrite every dev URL generically —
+// no hardcoded filenames, so new assets under src/assets/ are covered too.
+function loadAssetUrlMap(distDir) {
+  const manifestPath = path.join(distDir, '.vite/manifest.json');
+  if (!fs.existsSync(manifestPath)) {
+    throw new Error(
+      'dist/.vite/manifest.json not found — ensure `build.manifest: true` is set ' +
+      'in vite.config.js and `vite build` ran before prerendering.'
+    );
+  }
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+  const assetUrlMap = new Map();
+  for (const [srcPath, chunk] of Object.entries(manifest)) {
+    if (srcPath.startsWith('src/assets/') && chunk.file) {
+      assetUrlMap.set(`/${srcPath}`, `/${chunk.file}`);
+    }
+  }
+  return assetUrlMap;
+}
+
+// Rewrites every /src/assets/... occurrence anywhere in the final HTML
+// (img src, inline background-image url(...), any future <link>/<source>
+// tag) to the matching production URL. Throws if an occurrence has no
+// manifest entry, so a missed/renamed asset fails the build loudly instead
+// of silently shipping a broken image.
+function resolveDevAssetUrls(html, route, assetUrlMap) {
+  return html.replace(/\/src\/assets\/[^"'()\s]+/g, (devUrl) => {
+    const prodUrl = assetUrlMap.get(devUrl);
+    if (!prodUrl) {
+      throw new Error(`[prerender] no production asset found for "${devUrl}" on route "${route}" — check dist/.vite/manifest.json`);
+    }
+    return prodUrl;
+  });
 }
 
 main().catch((err) => {

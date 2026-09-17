@@ -49,6 +49,16 @@ const CROP_POSITION = {
   'matcha-white-chocolate-cookie': 'centre',
   'matcha-strawberry-cookie': 'centre',
   'pistachio-brownie': 'centre',
+  'biscoff-brownie': 'centre',
+  'caramilk-brownie': 'centre',
+  'ferrero-rocher-brownie': 'centre',
+  'kinder-brownie': 'centre',
+  'kinder-bueno-cookie': 'centre',
+  'oreo-brownie': 'centre',
+  'pistachio-white-chocolate-cookie': 'centre',
+  'reeses-brownie': 'centre',
+  'snickers-brownie': 'centre',
+  'strawberry-nutella-brownie': 'centre',
 };
 
 // Extra zoom for the square crop (1 = none). >1 tightens the frame around the
@@ -56,6 +66,19 @@ const CROP_POSITION = {
 const CROP_ZOOM = {
   'oreo-white-chocolate-cookie': 1.3,
   'pistachio-brownie': 1.7,
+  // New studio shots (Sep 2026): brownies/cookies are centred on a mostly-empty
+  // white 1415x2000 canvas, occupying well under half the frame. Zoom values
+  // derived from measuring each master's actual subject bounding box.
+  'biscoff-brownie': 2.0,
+  'caramilk-brownie': 2.05,
+  'ferrero-rocher-brownie': 1.9,
+  'kinder-brownie': 2.0,
+  'kinder-bueno-cookie': 1.3,
+  'oreo-brownie': 1.97,
+  'pistachio-white-chocolate-cookie': 1.3,
+  'reeses-brownie': 1.85,
+  'snickers-brownie': 1.9,
+  'strawberry-nutella-brownie': 1.85,
 };
 
 const IMAGE_RE = /\.(jpe?g|png|webp)$/i;

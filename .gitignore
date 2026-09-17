@@ -17,6 +17,7 @@ server/public/
 # Regenerate with `cd client && npm run optimize:images`.
 client/images-src/
 /original images/
+/New images/
 
 # Logs
 server/server.log

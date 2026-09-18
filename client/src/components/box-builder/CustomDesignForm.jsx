@@ -1,8 +1,20 @@
 import { useState, useMemo } from 'react';
+import { ImageOff } from 'lucide-react';
 import QuantityStepper from './QuantityStepper';
 import OrderSummaryFooter from './OrderSummaryFooter';
+import ProductImage from '../ProductImage';
 
 const MIN_QTY = 12;
+
+// Placeholder example tiles until real custom sugar cookie photos are ready.
+// Swap each `image_url: null` for a real path (matching the ProductImage
+// convention used elsewhere, e.g. '/images/sugar-cookie-example-1.webp') to
+// replace the "Coming Soon" placeholder with the actual photo.
+const EXAMPLES = [
+  { id: 1, name: 'Custom Design', image_url: null },
+  { id: 2, name: 'Custom Design', image_url: null },
+  { id: 3, name: 'Custom Design', image_url: null },
+];
 
 export default function CustomDesignForm() {
   const [quantity, setQuantity] = useState(MIN_QTY);
@@ -31,6 +43,31 @@ export default function CustomDesignForm() {
         Minimum order of {MIN_QTY}. Tell us what you're after and we'll send a quote — feel free to
         send reference photos via email or Instagram once you reach out.
       </p>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+        {EXAMPLES.map(ex => (
+          <div key={ex.id} className="border border-brown-100 text-center flex flex-col h-full">
+            <div className="relative w-full aspect-square bg-cream-100 overflow-hidden">
+              {ex.image_url ? (
+                <ProductImage
+                  src={ex.image_url}
+                  alt={ex.name}
+                  sizes="(min-width:640px) 300px, 45vw"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center gap-1.5 text-brown-300">
+                  <ImageOff size={28} strokeWidth={1.5} />
+                  <span className="text-xs font-medium uppercase tracking-wide">Coming Soon</span>
+                </div>
+              )}
+            </div>
+            <div className="p-2.5">
+              <p className="text-sm font-medium text-brown-700 leading-snug">{ex.name}</p>
+            </div>
+          </div>
+        ))}
+      </div>
 
       <div className="mb-5">
         <label className="block text-sm font-semibold text-brown-700 mb-1">Quantity (min. {MIN_QTY})</label>

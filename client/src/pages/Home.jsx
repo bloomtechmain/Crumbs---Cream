@@ -155,34 +155,34 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <ProductImage
-                  src="/images/biscoff-cookie.webp?v=3"
-                  alt="Biscoff Cookie, handmade by Crumbs & Cream"
+                  src="/images/story-cupcakes.webp"
+                  alt="Rose-swirl cupcakes handmade by Crumbs & Cream"
                   sizes="(min-width:768px) 320px, 45vw"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <ProductImage
-                  src="/images/matcha-cheesecake-cookie.webp"
-                  alt="Matcha Cheesecake Cookie, handmade by Crumbs & Cream"
+                  src="/images/story-sugar-cookies.webp"
+                  alt="Custom baby shower sugar cookies handmade by Crumbs & Cream"
                   sizes="(min-width:768px) 320px, 45vw"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <ProductImage
-                  src="/images/matcha-strawberry-cookie.webp"
-                  alt="Matcha Strawberry Cookie, handmade by Crumbs & Cream"
+                  src="/images/story-brownie-cake.webp"
+                  alt="Custom birthday brownie stack from Crumbs & Cream"
                   sizes="(min-width:768px) 320px, 45vw"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square bg-brown-700 rounded-sm overflow-hidden">
                 <ProductImage
-                  src="/images/assorted-cookies.webp"
-                  alt="Freshly baked cookies from Crumbs & Cream"
+                  src="/images/story-assorted-brownies.webp"
+                  alt="Assorted brownie flavours from Crumbs & Cream"
                   sizes="(min-width:768px) 320px, 45vw"
-                  className="w-full h-full object-cover object-right"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>

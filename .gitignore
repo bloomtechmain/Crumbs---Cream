@@ -18,6 +18,7 @@ server/public/
 client/images-src/
 /original images/
 /New images/
+/updated image/
 
 # Logs
 server/server.log

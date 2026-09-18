@@ -34,10 +34,9 @@ const SPECIAL = {
 
 // Extra clockwise rotation (degrees) applied after EXIF auto-orient, for
 // masters that were shot in the wrong orientation. Keyed by name (no extension).
-const MANUAL_ROTATE = {
-  'biscoff-cookie': 90,
-  'oreo-white-chocolate-cookie': 90,
-};
+// (Sep 2026 studio re-shoots of biscoff-cookie and oreo-white-chocolate-cookie
+// are already upright — the old 90deg overrides for those slugs were removed.)
+const MANUAL_ROTATE = {};
 
 // Square-crop gravity override. Product photos default to `attention` (pick the
 // busiest region), but that can sit a centred subject too high — force a plain
@@ -59,13 +58,17 @@ const CROP_POSITION = {
   'reeses-brownie': 'centre',
   'snickers-brownie': 'centre',
   'strawberry-nutella-brownie': 'centre',
+  // New studio shots (Sep 2026 batch 2): same centred-on-white-canvas style.
+  'ferrero-rocher-cookie': 'centre',
+  'matcha-cheesecake-cookie': 'centre',
+  'matcha-pistachio-cookie': 'centre',
+  'red-velvet-cupcake': 'centre',
+  'vanilla-bean-cupcake': 'centre',
 };
 
 // Extra zoom for the square crop (1 = none). >1 tightens the frame around the
 // subject when the photo was shot with too much empty margin. Keyed by name.
 const CROP_ZOOM = {
-  'oreo-white-chocolate-cookie': 1.3,
-  'pistachio-brownie': 1.7,
   // New studio shots (Sep 2026): brownies/cookies are centred on a mostly-empty
   // white 1415x2000 canvas, occupying well under half the frame. Zoom values
   // derived from measuring each master's actual subject bounding box.
@@ -75,10 +78,24 @@ const CROP_ZOOM = {
   'kinder-brownie': 2.0,
   'kinder-bueno-cookie': 1.3,
   'oreo-brownie': 1.97,
-  'pistachio-white-chocolate-cookie': 1.3,
   'reeses-brownie': 1.85,
   'snickers-brownie': 1.9,
   'strawberry-nutella-brownie': 1.85,
+  // Sep 2026 batch 2: same mostly-empty white-canvas issue. Values are ~75-90%
+  // of each photo's measured subject-bounding-box zoom, leaving a small margin
+  // so thin drizzle/garnish that fell under the white-detection threshold isn't
+  // clipped. pistachio-brownie is a different, tightly-cropped studio shot
+  // (subject already fills the frame) so it gets no extra zoom.
+  'biscoff-cookie': 1.8,
+  'ferrero-rocher-cookie': 1.45,
+  'matcha-cheesecake-cookie': 1.35,
+  'matcha-pistachio-cookie': 1.35,
+  'matcha-strawberry-cookie': 1.45,
+  'matcha-white-chocolate-cookie': 1.35,
+  'oreo-white-chocolate-cookie': 1.75,
+  'pistachio-white-chocolate-cookie': 1.3,
+  'red-velvet-cupcake': 1.15,
+  'vanilla-bean-cupcake': 1.15,
 };
 
 const IMAGE_RE = /\.(jpe?g|png|webp)$/i;

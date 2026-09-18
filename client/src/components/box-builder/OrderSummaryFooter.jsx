@@ -1,23 +1,11 @@
 import { useState } from 'react';
-import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
-import { mailtoLink, submitOrder } from './orderSummary';
+import OrderReviewModal from './OrderReviewModal';
 
 export default function OrderSummaryFooter({ total, summary, boxes, ready, note }) {
   const [couponCode, setCouponCode] = useState('');
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const [modalOpen, setModalOpen] = useState(false);
 
   const trimmedCoupon = couponCode.trim();
-  const fullSummary = trimmedCoupon ? `${summary}\nCoupon code: ${trimmedCoupon}` : summary;
-
-  const handlePlaceOrder = async () => {
-    setStatus('sending');
-    try {
-      await submitOrder(summary, trimmedCoupon);
-      setStatus('sent');
-    } catch {
-      setStatus('error');
-    }
-  };
 
   return (
     <div className="bg-cream-50 border border-cream-200 p-6">
@@ -77,37 +65,22 @@ export default function OrderSummaryFooter({ total, summary, boxes, ready, note 
               We'll apply your code when we confirm your order.
             </p>
           </div>
-          {status === 'sent' ? (
-            <p className="flex items-center justify-center gap-2 text-green-700 bg-green-50 border border-green-200 px-4 py-3 text-sm font-medium">
-              <CheckCircle2 size={18} /> Order sent! We'll be in touch to confirm.
-            </p>
-          ) : (
-            <>
-              <button
-                type="button"
-                onClick={handlePlaceOrder}
-                disabled={status === 'sending'}
-                className="btn-primary w-full text-center flex items-center justify-center gap-2 disabled:opacity-60"
-              >
-                {status === 'sending' && <Loader2 size={16} className="animate-spin" />}
-                {status === 'sending' ? 'Sending…' : 'Place Order'}
-              </button>
-              {status === 'error' && (
-                <div className="mt-3 text-sm text-red-600 flex items-start gap-2">
-                  <AlertCircle size={16} className="flex-shrink-0 mt-0.5" />
-                  <span>
-                    Couldn't send automatically.{' '}
-                    <a
-                      href={mailtoLink('New Order — Crumbs & Cream', fullSummary)}
-                      className="underline font-medium"
-                    >
-                      Email us directly instead
-                    </a>.
-                  </span>
-                </div>
-              )}
-            </>
-          )}
+          <button
+            type="button"
+            onClick={() => setModalOpen(true)}
+            className="btn-primary w-full text-center"
+          >
+            Review Order
+          </button>
+
+          <OrderReviewModal
+            open={modalOpen}
+            onClose={() => setModalOpen(false)}
+            total={total}
+            boxes={boxes || []}
+            couponCode={trimmedCoupon}
+            summary={summary}
+          />
         </>
       )}
     </div>

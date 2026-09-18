@@ -6,14 +6,10 @@ import ProductImage from '../ProductImage';
 
 const MIN_QTY = 12;
 
-// Placeholder example tiles until real custom sugar cookie photos are ready.
-// Swap each `image_url: null` for a real path (matching the ProductImage
-// convention used elsewhere, e.g. '/images/sugar-cookie-example-1.webp') to
-// replace the "Coming Soon" placeholder with the actual photo.
 const EXAMPLES = [
-  { id: 1, name: 'Custom Design', image_url: null },
-  { id: 2, name: 'Custom Design', image_url: null },
-  { id: 3, name: 'Custom Design', image_url: null },
+  { id: 1, name: 'Baby Shower', image_url: '/images/sugar-cookie-example-1.webp' },
+  { id: 2, name: '40th Birthday', image_url: '/images/sugar-cookie-example-2.webp' },
+  { id: 3, name: 'Safari 1st Birthday', image_url: '/images/sugar-cookie-example-3.webp' },
 ];
 
 export default function CustomDesignForm() {
@@ -46,7 +42,7 @@ export default function CustomDesignForm() {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
         {EXAMPLES.map(ex => (
-          <div key={ex.id} className="border border-brown-100 text-center flex flex-col h-full">
+          <div key={ex.id} className="border border-brown-100 flex flex-col h-full">
             <div className="relative w-full aspect-square bg-cream-100 overflow-hidden">
               {ex.image_url ? (
                 <ProductImage
@@ -61,9 +57,6 @@ export default function CustomDesignForm() {
                   <span className="text-xs font-medium uppercase tracking-wide">Coming Soon</span>
                 </div>
               )}
-            </div>
-            <div className="p-2.5">
-              <p className="text-sm font-medium text-brown-700 leading-snug">{ex.name}</p>
             </div>
           </div>
         ))}

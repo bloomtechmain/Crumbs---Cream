@@ -23,11 +23,12 @@ export const PAGE_META = {
     description: 'Photos of our handcrafted cookies, brownies and cupcakes — a look at what we bake fresh in South East Melbourne.',
     path: '/gallery',
   },
-  '/reviews': {
-    title: 'Customer Reviews',
-    description: "See what our customers say about Crumbs & Cream's homemade cookies, brownies and cupcakes in South East Melbourne.",
-    path: '/reviews',
-  },
+  // Reviews page is temporarily unpublished — re-add once it goes live.
+  // '/reviews': {
+  //   title: 'Customer Reviews',
+  //   description: "See what our customers say about Crumbs & Cream's homemade cookies, brownies and cupcakes in South East Melbourne.",
+  //   path: '/reviews',
+  // },
   '/contact': {
     title: 'Contact Us',
     description: 'Get in touch with Crumbs & Cream to place an order or ask a question. Email us — we usually reply within 24 hours.',

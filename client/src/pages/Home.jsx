@@ -190,8 +190,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Reviews Snippet */}
-      {reviews.length > 0 && (
+      {/* Reviews Snippet — temporarily hidden from the landing page; re-enable by removing `false &&` below. */}
+      {false && reviews.length > 0 && (
         <section className="py-20 bg-cream-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -214,9 +214,10 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="text-center mt-10">
+            {/* Reviews page is temporarily unpublished — re-add once it goes live. */}
+            {/* <div className="text-center mt-10">
               <Link to="/reviews" className="btn-outline">Read All Reviews</Link>
-            </div>
+            </div> */}
           </div>
         </section>
       )}

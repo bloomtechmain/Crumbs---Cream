@@ -7,7 +7,8 @@ import Home     from './pages/Home';
 import Products from './pages/Products';
 import Delivery from './pages/Delivery';
 import Gallery  from './pages/Gallery';
-import Reviews  from './pages/Reviews';
+// Reviews page is temporarily unpublished — re-add once it goes live.
+// import Reviews  from './pages/Reviews';
 import Contact  from './pages/Contact';
 
 function PublicLayout({ children }) {
@@ -27,7 +28,8 @@ export function AppRoutes() {
       <Route path="/products" element={<PublicLayout><Products /></PublicLayout>} />
       <Route path="/delivery" element={<PublicLayout><Delivery /></PublicLayout>} />
       <Route path="/gallery"  element={<PublicLayout><Gallery /></PublicLayout>} />
-      <Route path="/reviews"  element={<PublicLayout><Reviews /></PublicLayout>} />
+      {/* Reviews page is temporarily unpublished — re-add once it goes live. */}
+      {/* <Route path="/reviews"  element={<PublicLayout><Reviews /></PublicLayout>} /> */}
       <Route path="/contact"  element={<PublicLayout><Contact /></PublicLayout>} />
     </Routes>
   );

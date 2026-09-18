@@ -36,7 +36,8 @@ export default function Footer() {
                 ['/products', 'Our Products'],
                 ['/delivery', 'Delivery Info'],
                 ['/gallery',  'Gallery'],
-                ['/reviews',  'Reviews'],
+                // Reviews page is temporarily unpublished — re-add once it goes live.
+                // ['/reviews',  'Reviews'],
                 ['/contact',  'Contact Us'],
               ].map(([to, label]) => (
                 <li key={to}>

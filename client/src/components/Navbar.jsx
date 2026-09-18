@@ -8,7 +8,8 @@ const links = [
   { to: '/products', label: 'Products' },
   { to: '/delivery', label: 'Delivery' },
   { to: '/gallery',  label: 'Gallery' },
-  { to: '/reviews',  label: 'Reviews' },
+  // Reviews page is temporarily unpublished — re-add once it goes live.
+  // { to: '/reviews',  label: 'Reviews' },
   { to: '/contact',  label: 'Contact Us' },
 ];
 

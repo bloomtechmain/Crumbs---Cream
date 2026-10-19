@@ -93,7 +93,6 @@ const CROP_ZOOM = {
   'matcha-strawberry-cookie': 1.45,
   'matcha-white-chocolate-cookie': 1.35,
   'oreo-white-chocolate-cookie': 1.75,
-  'pistachio-white-chocolate-cookie': 1.3,
   'red-velvet-cupcake': 1.15,
   'vanilla-bean-cupcake': 1.15,
 };

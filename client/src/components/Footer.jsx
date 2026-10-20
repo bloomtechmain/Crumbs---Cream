@@ -17,7 +17,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src={logo} alt="Crumbs & Cream" className="w-12 h-12 object-contain rounded-full bg-white" />
+              <img src={logo} alt="Crumbs & Cream" className="w-24 h-24 object-contain rounded-full bg-white" />
               <div>
                 <p className="font-serif font-bold text-white text-xl">Crumbs & Cream</p>
               </div>

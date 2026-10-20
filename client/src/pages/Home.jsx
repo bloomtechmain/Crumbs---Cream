@@ -4,6 +4,7 @@ import allProducts from '../data/products';
 import allReviews from '../data/reviews';
 import ProductImage from '../components/ProductImage';
 import homeHero from '../assets/home-hero.webp';
+import logo from '../assets/logo.webp';
 
 // Display order for the Best Sellers section. Membership is controlled by each
 // product's is_featured flag in data/products.js; this list only orders them.
@@ -31,9 +32,11 @@ export default function Home() {
           style={{ backgroundImage: `url(${homeHero})` }}
         />
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
-          <p className="text-cream-300 text-sm tracking-[0.3em] uppercase mb-6 font-medium">
-            Crumbs & Cream
-          </p>
+          <img
+            src={logo}
+            alt="Crumbs & Cream"
+            className="w-44 h-44 sm:w-64 sm:h-64 md:w-[28rem] md:h-[28rem] object-contain rounded-full mx-auto mb-6 shadow-xl"
+          />
           <h1 className="font-serif text-5xl md:text-7xl text-white font-bold leading-tight mb-6">
             From Our Oven<br />
             <span className="text-cream-300">To Your Door</span>

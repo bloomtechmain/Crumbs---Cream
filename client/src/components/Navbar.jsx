@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logo from '../assets/logo.webp';
@@ -15,28 +15,39 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <nav className="bg-white border-b border-brown-100 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div
+          className={`flex items-center justify-between transition-all duration-300 ${
+            scrolled ? 'h-16 md:h-20' : 'h-24 md:h-36'
+          }`}
+        >
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-            <img src={logo} alt="Crumbs & Cream" className="h-14 w-14 object-contain" />
-            <div className="hidden sm:block">
-              <p className="font-serif font-bold text-brown-700 text-xl leading-tight">Crumbs & Cream</p>
-            </div>
+            <img src={logo} alt="Crumbs & Cream" className={`object-contain rounded-full transition-all duration-300 ${
+                scrolled ? 'h-12 w-12 md:h-16 md:w-16' : 'h-20 w-20 md:h-32 md:w-32'
+              }`} />
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {links.map(({ to, label }) => (
               <NavLink
                 key={to}
                 to={to}
                 end={to === '/'}
                 className={({ isActive }) =>
-                  `text-sm font-medium tracking-wide uppercase transition-colors duration-200 ${
+                  `text-lg font-medium tracking-wide uppercase transition-colors duration-200 ${
                     isActive ? 'text-brown-600 border-b-2 border-brown-500 pb-0.5' : 'text-brown-500 hover:text-brown-700'
                   }`
                 }

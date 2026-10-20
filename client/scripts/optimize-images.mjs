@@ -28,7 +28,7 @@ const PRODUCT_QUALITY = { 400: 78, 800: 78, 1200: 75 };
 const SPECIAL = {
   'products-hero': { dir: assetsOutDir, widths: [{ w: 2400, q: 72, suffix: '' }] },
   'home-hero':     { dir: assetsOutDir, widths: [{ w: 2400, q: 72, suffix: '' }] },
-  'logo':          { dir: assetsOutDir, widths: [{ w: 200,  q: 82, suffix: '' }] },
+  'logo':          { dir: assetsOutDir, widths: [{ w: 800,  q: 85, suffix: '' }] },
   'rizedigit-logo':{ dir: assetsOutDir, widths: [{ w: 200,  q: 82, suffix: '' }] },
 };
 

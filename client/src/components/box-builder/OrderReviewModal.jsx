@@ -5,10 +5,11 @@ import { formatPrice, mailtoLink, submitOrder } from './orderSummary';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function buildFullSummary({ name, fulfilment, email, phone, orderSummary, couponCode }) {
+function buildFullSummary({ name, fulfilment, address, email, phone, orderSummary, couponCode }) {
   return [
     `Name: ${name}`,
     `Fulfilment: ${fulfilment === 'pickup' ? 'Pickup' : 'Delivery'}`,
+    ...(fulfilment === 'delivery' ? [`Delivery address: ${address}`] : []),
     `Email: ${email}`,
     `Phone: ${phone}`,
     '',
@@ -20,18 +21,21 @@ function buildFullSummary({ name, fulfilment, email, phone, orderSummary, coupon
 export default function OrderReviewModal({ open, onClose, total, boxes, couponCode, summary }) {
   const [name, setName] = useState('');
   const [fulfilment, setFulfilment] = useState('delivery');
+  const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
 
   if (!open) return null;
 
-  const trimmed = { name: name.trim(), email: email.trim(), phone: phone.trim() };
-  const canSend = trimmed.name && trimmed.phone && EMAIL_RE.test(trimmed.email);
+  const trimmed = { name: name.trim(), address: address.trim(), email: email.trim(), phone: phone.trim() };
+  const canSend = trimmed.name && trimmed.phone && EMAIL_RE.test(trimmed.email)
+    && (fulfilment === 'pickup' || trimmed.address);
 
   const fullSummary = buildFullSummary({
     name: trimmed.name || '(not provided)',
     fulfilment,
+    address: trimmed.address || '(not provided)',
     email: trimmed.email || '(not provided)',
     phone: trimmed.phone || '(not provided)',
     orderSummary: summary,
@@ -164,6 +168,20 @@ export default function OrderReviewModal({ open, onClose, total, boxes, couponCo
                     </button>
                   ))}
                 </div>
+                {fulfilment === 'delivery' && (
+                  <div className="mt-3">
+                    <input
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      placeholder="Delivery address, including suburb"
+                      aria-label="Delivery address"
+                      className="w-full border border-brown-200 rounded-sm px-3 py-2.5 text-brown-700 focus:outline-none focus:border-brown-500"
+                    />
+                    <p className="text-xs text-brown-400 mt-1.5">
+                      See our <a href="/delivery" className="underline hover:text-brown-600">delivery zones</a>. Delivery fees are confirmed with your order.
+                    </p>
+                  </div>
+                )}
               </div>
 
               <div>

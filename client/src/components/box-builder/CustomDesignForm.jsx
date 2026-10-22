@@ -6,6 +6,13 @@ import ProductImage from '../ProductImage';
 
 const MIN_QTY = 12;
 
+// Earliest selectable date (tomorrow), as YYYY-MM-DD in local time.
+function minDate() {
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
 const EXAMPLES = [
   { id: 1, name: 'Baby Shower', image_url: '/images/sugar-cookie-example-1.webp' },
   { id: 2, name: '40th Birthday', image_url: '/images/sugar-cookie-example-2.webp' },
@@ -18,7 +25,8 @@ export default function CustomDesignForm() {
   const [details, setDetails] = useState('');
   const [date, setDate] = useState('');
 
-  const ready = occasion.trim().length > 0 && details.trim().length > 0;
+  const dateInvalid = date !== '' && date < minDate();
+  const ready = occasion.trim().length > 0 && details.trim().length > 0 && !dateInvalid;
 
   const summary = useMemo(() => {
     if (!ready) return '';
@@ -92,10 +100,14 @@ export default function CustomDesignForm() {
         <label className="block text-sm font-semibold text-brown-700 mb-1">Preferred date (optional)</label>
         <input
           type="date"
+          min={minDate()}
           value={date}
           onChange={e => setDate(e.target.value)}
           className="w-full border border-brown-200 rounded-sm px-3 py-2.5 text-brown-700"
         />
+        {dateInvalid && (
+          <p className="text-xs text-red-600 mt-1.5">Please choose a date from tomorrow onwards.</p>
+        )}
       </div>
 
       <OrderSummaryFooter

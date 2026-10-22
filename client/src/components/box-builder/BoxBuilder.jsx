@@ -1,13 +1,14 @@
-import { useState, useRef, useMemo } from 'react';
+import { useState, useRef, useMemo, useEffect } from 'react';
 import { ShoppingCart, Trash2 } from 'lucide-react';
 import products from '../../data/products';
 import FlavourAllocatorBuilder from './FlavourAllocatorBuilder';
 import SingleFlavourPackBuilder from './SingleFlavourPackBuilder';
 import CustomDesignForm from './CustomDesignForm';
+import CustomCakeForm from './CustomCakeForm';
 import OrderSummaryFooter from './OrderSummaryFooter';
 import CartLine from './CartLine';
 import { formatPrice } from './orderSummary';
-import { cookieBoxPrice, BROWNIE_BOX_PRICES, CUPCAKE_PACK_PRICES } from '../../data/boxPricing';
+import { cookieBoxPrice, brownieBoxPrice, BROWNIE_BOX_PRICES, CUPCAKE_PACK_PRICES } from '../../data/boxPricing';
 
 // Includes the Matcha Collection flavours — matcha now lives inside the
 // Cookies tab as a third tier alongside classic and premium.
@@ -24,7 +25,7 @@ const cupcakeFlavours = products
   .filter(p => ['Chocolate Fudge Cupcake', 'Vanilla Bean Cupcake', 'Red Velvet Cupcake'].includes(p.name))
   .map(p => ({ id: p.id, name: p.name, price: p.price, image_url: p.image_url }));
 
-const CATEGORY_EMOJI = { cookies: '🍪', brownies: '🍫', cupcakes: '🧁', 'sugar-cookies': '🎨' };
+const CATEGORY_EMOJI = { cookies: '🍪', brownies: '🍫', cupcakes: '🧁', 'sugar-cookies': '🎨', 'custom-cakes': '🎂' };
 
 // Mirrors the Range table from the client's price brief — each group shows
 // its flavours together so it's clear what counts as Classic vs. Premium
@@ -40,6 +41,7 @@ const TABS = [
   { key: 'brownies', label: 'Brownies' },
   { key: 'cupcakes', label: 'Cupcakes' },
   { key: 'sugar-cookies', label: 'Sugar Cookies' },
+  { key: 'custom-cakes', label: 'Custom Cakes' },
 ];
 
 export default function BoxBuilder() {
@@ -48,6 +50,20 @@ export default function BoxBuilder() {
   const [pending, setPending] = useState(null); // in-progress, fully-allocated box for the active tab
   const nextBoxId = useRef(1);
   const activeBuilderRef = useRef(null);
+  const rootRef = useRef(null);
+
+  // Lets other pages deep-link straight to a tab, e.g. /products#custom-cakes.
+  useEffect(() => {
+    const fromHash = () => {
+      const key = window.location.hash.slice(1);
+      if (!TABS.some(t => t.key === key)) return;
+      setTab(key);
+      rootRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
+    return () => window.removeEventListener('hashchange', fromHash);
+  }, []);
 
   const commitPending = () => {
     if (!pending) return;
@@ -111,7 +127,7 @@ export default function BoxBuilder() {
   }, [hasOrder, summaryBoxes, totalPrice]);
 
   return (
-    <div className="bg-white shadow-sm">
+    <div ref={rootRef} className="bg-white shadow-sm scroll-mt-24">
       <div className="flex overflow-x-auto border-b border-brown-100">
         {TABS.map(t => (
           <button
@@ -131,6 +147,8 @@ export default function BoxBuilder() {
       <div className="p-6 sm:p-8">
         {tab === 'sugar-cookies' ? (
           <CustomDesignForm />
+        ) : tab === 'custom-cakes' ? (
+          <CustomCakeForm />
         ) : (
           <div className="lg:grid lg:grid-cols-3 lg:gap-8 lg:items-start">
             <div className="lg:col-span-2">
@@ -138,18 +156,19 @@ export default function BoxBuilder() {
                 <FlavourAllocatorBuilder ref={activeBuilderRef} title="Box of 4 Cookies" subtitle="Pick any 4. All Classic or all Premium gets that tier's box price — mix Classic + Premium for $25 flat. Matcha Collection is priced separately. Fewer than 4? You'll be charged individual cookie pricing." unitLabel="pcs" sizes={[4]} flavours={cookieFlavours} emoji={CATEGORY_EMOJI.cookies} onCommit={handleCommit} onPendingChange={setPending} priceOverride={cookieBoxPrice} tierGroups={COOKIE_TIER_GROUPS} allowPartial />
               )}
               {tab === 'brownies' && (
-                <SingleFlavourPackBuilder
+                <FlavourAllocatorBuilder
                   ref={activeBuilderRef}
                   title="Brownie Box"
-                  subtitle="Choose your brownie box size, then select your flavours."
-                  sizeUnitLabel="pcs"
+                  subtitle="Choose your box size, then mix and match as many flavours as you like to fill it."
+                  unitLabel="pcs"
                   sizes={[9, 16, 25]}
                   flavours={brownieFlavours}
-                  priceFor={(_flavour, size) => BROWNIE_BOX_PRICES[size]}
+                  priceOverride={brownieBoxPrice}
+                  sizePrice={(size) => BROWNIE_BOX_PRICES[size]}
+                  showUnitPrice={false}
                   emoji={CATEGORY_EMOJI.brownies}
                   onCommit={handleCommit}
                   onPendingChange={setPending}
-                  sizeFirst
                 />
               )}
               {tab === 'cupcakes' && (
@@ -160,8 +179,7 @@ export default function BoxBuilder() {
                   sizeUnitLabel="Pack"
                   sizes={[4, 6, 12, 24]}
                   flavours={cupcakeFlavours}
-                  priceFor={(flavour, size) => flavour ? CUPCAKE_PACK_PRICES[flavour.name]?.[size] : undefined}
-                  minPriceFor={(size) => Math.min(...Object.values(CUPCAKE_PACK_PRICES).map(p => p[size]).filter(v => v != null))}
+                  priceFor={(_flavour, size) => CUPCAKE_PACK_PRICES[size]}
                   emoji={CATEGORY_EMOJI.cupcakes}
                   onCommit={handleCommit}
                   onPendingChange={setPending}

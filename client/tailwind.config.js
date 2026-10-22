@@ -11,25 +11,29 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Palette matched to the new logo: deep chocolate brown for text and
+        // dark accents, warm caramel/champagne for borders and highlights.
         brown: {
-          50:  '#fdf8f3',
-          100: '#f5e8d8',
-          200: '#e8c9a0',
-          300: '#d4a96a',
-          400: '#c08040',
-          500: '#8B5E3C',
-          600: '#6B4423',
-          700: '#4A2C15',
-          800: '#2E1A0E',
-          900: '#1a0f08',
+          50:  '#faf4ec',
+          100: '#f1e4d4',
+          200: '#e2c8ab',
+          300: '#c39a76',
+          400: '#94623f',
+          500: '#7a4a2a',
+          600: '#5f3216',
+          700: '#4b2410',
+          800: '#361909',
+          900: '#211005',
         },
+        // Soft ivory backgrounds (50–100) through to warm taupe (200–300)
+        // for secondary sections and cards.
         cream: {
-          50:  '#fffdf9',
-          100: '#fdf6ec',
-          200: '#f9ecd5',
-          300: '#f3dbb0',
-          400: '#eac882',
-          500: '#deb45a',
+          50:  '#fdfaf3',
+          100: '#f8f1e4',
+          200: '#ece1d2',
+          300: '#ddcfbd',
+          400: '#cfbca0',
+          500: '#b8a284',
         },
       },
       fontFamily: {

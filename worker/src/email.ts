@@ -10,6 +10,11 @@ export async function sendOrderEmail(env: Env, payload: OrderPayload): Promise<v
     ? `${payload.summary}\nCoupon code: ${payload.couponCode.trim()}`
     : payload.summary;
 
+  await sendEmail(env, message);
+}
+
+/** Sends a plain-text message through the bakery's EmailJS template. */
+export async function sendEmail(env: Env, message: string): Promise<void> {
   const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

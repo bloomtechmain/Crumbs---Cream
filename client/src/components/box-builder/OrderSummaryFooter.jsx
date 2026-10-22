@@ -8,7 +8,7 @@ export default function OrderSummaryFooter({ total, summary, boxes, ready, note 
   const trimmedCoupon = couponCode.trim();
 
   return (
-    <div className="bg-cream-50 border border-cream-200 p-6">
+    <div className="bg-cream-200 border border-cream-300 p-6">
       <div className="flex items-center justify-between mb-4">
         <span className="font-serif text-lg font-bold text-brown-800">Estimated Total</span>
         <span className="text-2xl font-bold text-brown-700">
@@ -16,7 +16,7 @@ export default function OrderSummaryFooter({ total, summary, boxes, ready, note 
         </span>
       </div>
       {!ready && (
-        <p className="text-brown-400 text-sm">{note || 'Finish your selection to see the order summary.'}</p>
+        <p className="text-brown-500 text-sm">{note || 'Finish your selection to see the order summary.'}</p>
       )}
       {ready && (
         <>
@@ -38,7 +38,7 @@ export default function OrderSummaryFooter({ total, summary, boxes, ready, note 
                       <span>{it.qty} × {it.name}</span>
                       <span className="flex-1 border-b border-dotted border-brown-100" />
                       {!box.fixedPrice && (
-                        <span className="text-brown-400 whitespace-nowrap">
+                        <span className="text-brown-500 whitespace-nowrap">
                           A${(it.price * it.qty).toFixed(2)}
                         </span>
                       )}
@@ -61,7 +61,7 @@ export default function OrderSummaryFooter({ total, summary, boxes, ready, note 
               placeholder="Enter code"
               className="w-full border border-brown-200 px-3 py-2 text-sm text-brown-700 focus:outline-none focus:border-brown-500"
             />
-            <p className="text-brown-400 text-xs mt-1.5">
+            <p className="text-brown-500 text-xs mt-1.5">
               We'll apply your code when we confirm your order.
             </p>
           </div>

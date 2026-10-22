@@ -5,7 +5,7 @@ import { formatPrice } from './orderSummary';
 import ProductImage from '../ProductImage';
 
 const FlavourAllocatorBuilder = forwardRef(function FlavourAllocatorBuilder(
-  { title, subtitle, unitLabel, sizes, flavours, emoji, onCommit, onPendingChange, priceOverride, tierGroups, allowPartial = false },
+  { title, subtitle, unitLabel, sizes, flavours, emoji, onCommit, onPendingChange, priceOverride, tierGroups, allowPartial = false, sizePrice, showUnitPrice = true },
   ref
 ) {
   const [size, setSize] = useState(sizes[0]);
@@ -100,6 +100,7 @@ const FlavourAllocatorBuilder = forwardRef(function FlavourAllocatorBuilder(
             }`}
           >
             {s} {unitLabel}
+            {sizePrice && sizePrice(s) != null && <> for {formatPrice(sizePrice(s)).replace('A$', '$')}</>}
           </button>
         ))}
       </div>
@@ -116,20 +117,20 @@ const FlavourAllocatorBuilder = forwardRef(function FlavourAllocatorBuilder(
                 <h4 className="text-sm font-bold uppercase tracking-widest text-brown-700">{group.label}</h4>
                 <span className="text-xs text-brown-400">{group.note}</span>
               </div>
-              <FlavourGrid flavours={groupFlavours} allocation={allocation} remaining={remaining} emoji={emoji} setQty={setQty} addOne={addOne} />
+              <FlavourGrid flavours={groupFlavours} allocation={allocation} remaining={remaining} emoji={emoji} setQty={setQty} addOne={addOne} showUnitPrice={showUnitPrice} />
             </div>
           );
         })
       ) : (
         <div className="mb-6">
-          <FlavourGrid flavours={flavours} allocation={allocation} remaining={remaining} emoji={emoji} setQty={setQty} addOne={addOne} />
+          <FlavourGrid flavours={flavours} allocation={allocation} remaining={remaining} emoji={emoji} setQty={setQty} addOne={addOne} showUnitPrice={showUnitPrice} />
         </div>
       )}
     </div>
   );
 });
 
-function FlavourGrid({ flavours, allocation, remaining, emoji, setQty, addOne }) {
+function FlavourGrid({ flavours, allocation, remaining, emoji, setQty, addOne, showUnitPrice }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
       {flavours.map(f => {
@@ -173,7 +174,11 @@ function FlavourGrid({ flavours, allocation, remaining, emoji, setQty, addOne })
             </button>
             <div className="p-2.5 flex flex-col flex-1 text-center">
               <p className="text-sm font-medium text-brown-700 leading-snug line-clamp-3 min-h-[3.75rem]">{f.name}</p>
-              <p className="text-brown-400 text-xs mb-2">{formatPrice(f.price)} each</p>
+              {showUnitPrice ? (
+                <p className="text-brown-400 text-xs mb-2">{formatPrice(f.price)} each</p>
+              ) : (
+                <div className="mb-2" />
+              )}
               <QuantityStepper
                 value={qty}
                 onChange={q => setQty(f.id, q)}

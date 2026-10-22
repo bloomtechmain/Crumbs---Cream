@@ -62,7 +62,7 @@ export default function OrderReviewModal({ open, onClose, total, boxes, couponCo
   // stacking context), so escaping to body guarantees it always paints on top.
   return createPortal(
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-brown-900 bg-opacity-60 z-50 flex items-center justify-center p-4"
       onClick={handleClose}
     >
       <div

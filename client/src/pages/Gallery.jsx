@@ -104,7 +104,7 @@ export default function Gallery() {
       {/* Lightbox */}
       {lightbox && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-brown-900 bg-opacity-95 z-50 flex items-center justify-center p-4"
           onClick={() => setLightbox(null)}
         >
           <div className="relative max-w-4xl max-h-full" onClick={e => e.stopPropagation()}>

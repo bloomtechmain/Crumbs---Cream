@@ -9,8 +9,8 @@ export const PAGE_META = {
     path: '/',
   },
   '/products': {
-    title: 'Menu — Cookies, Brownies & Cupcakes',
-    description: 'Build your own box of handcrafted cookies, brownies, cupcakes and matcha treats. Freshly baked to order in South East Melbourne.',
+    title: 'Menu — Cookies, Brownies, Cupcakes & Custom Cakes',
+    description: 'Build your own box of handcrafted cookies, brownies, cupcakes and matcha treats, or enquire about a custom cake. Freshly baked to order in South East Melbourne.',
     path: '/products',
   },
   '/delivery': {

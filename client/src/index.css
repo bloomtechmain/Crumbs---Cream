@@ -7,8 +7,8 @@
   body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background-color: #fffdf9;
-    color: #2E1A0E;
+    background-color: #fdfaf3;
+    color: #361909;
     -webkit-font-smoothing: antialiased;
   }
   #root { min-height: 100vh; }
@@ -62,7 +62,7 @@
 }
 
 /* Star rating */
-.stars { color: #d4a96a; }
+.stars { color: #b67d55; }
 
 /* Gallery grid */
 .gallery-grid {

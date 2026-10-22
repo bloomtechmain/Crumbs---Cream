@@ -19,3 +19,18 @@ export async function submitOrder(summary, couponCode) {
   });
   if (!res.ok) throw new Error('Order request failed');
 }
+
+// Sends a custom cake enquiry plus any reference photos. The worker stores the
+// photos and links them in the email. Throws on failure, with the worker's
+// message when the problem is the upload itself (e.g. a file too large).
+export async function submitCakeEnquiry(summary, photos) {
+  const form = new FormData();
+  form.append('summary', summary);
+  photos.forEach((p) => form.append('photos', p, p.name));
+
+  const res = await fetch(`${API_BASE}/api/cake-enquiry`, { method: 'POST', body: form });
+  if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    throw new Error(res.status === 400 && body?.error ? body.error : 'Enquiry request failed');
+  }
+}

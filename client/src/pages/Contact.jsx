@@ -69,7 +69,7 @@ export default function Contact() {
               ].map(({ icon: Icon, title, lines, link, highlight }) => (
                 <div
                   key={title}
-                  className={`flex gap-4 ${highlight ? 'items-center bg-cream-100 border border-brown-200 rounded-sm p-4' : ''}`}
+                  className={`flex gap-4 ${highlight ? 'items-center bg-cream-200 border border-brown-200 rounded-sm p-4' : ''}`}
                 >
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
                     highlight ? 'bg-brown-600' : 'bg-brown-100'
@@ -107,7 +107,7 @@ export default function Contact() {
             </div>
 
             {/* Order info box */}
-            <div className="bg-cream-100 border border-cream-200 p-6">
+            <div className="bg-cream-200 border border-cream-300 p-6">
               <h3 className="font-serif text-xl font-bold text-brown-700 mb-2">Placing an Order</h3>
               <p className="text-brown-500 text-sm leading-relaxed mb-3">
                 Email us at{' '}

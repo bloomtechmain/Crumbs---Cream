@@ -5,11 +5,8 @@ export const COOKIE_BOX_PRICES = { classic: 20, premium: 28, mixed: 25, matcha: 
 
 export const BROWNIE_BOX_PRICES = { 9: 30, 16: 45, 25: 65 };
 
-export const CUPCAKE_PACK_PRICES = {
-  'Vanilla Bean Cupcake':    { 4: 15,   6: 24,    12: 45, 24: 85 },
-  'Chocolate Fudge Cupcake': { 4: 21,   6: 31.50, 12: 60, 24: 115 },
-  'Red Velvet Cupcake':      { 4: 22,   6: 33,    12: 63, 24: 120 },
-};
+// Same pack price for every cupcake flavour (client update, 2026-10-22).
+export const CUPCAKE_PACK_PRICES = { 4: 16, 6: 23, 12: 42, 24: 78 };
 
 // A box of 4 classic-only, premium-only or matcha-only cookies gets its
 // tier's fixed price. A classic+premium mix of 4 gets the Mix & Match price.

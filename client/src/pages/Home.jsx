@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-brown-900">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-brown-900 pt-8 pb-20">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-40"
           style={{ backgroundImage: `url(${homeHero})` }}
@@ -35,18 +35,18 @@ export default function Home() {
           <img
             src={logo}
             alt="Crumbs & Cream"
-            className="w-44 h-44 sm:w-64 sm:h-64 md:w-[28rem] md:h-[28rem] object-contain rounded-full mx-auto mb-6 shadow-xl"
+            className="w-56 h-56 sm:w-72 sm:h-72 md:w-[min(30rem,38vh)] md:h-[min(30rem,38vh)] object-contain rounded-full mx-auto mb-5 shadow-[0_0_40px_8px_rgba(253,250,243,0.28)]"
           />
-          <h1 className="font-serif text-5xl md:text-7xl text-white font-bold leading-tight mb-6">
+          <h1 className="font-serif text-5xl md:text-7xl text-white font-bold leading-tight mb-5">
             From Our Oven<br />
             <span className="text-cream-300">To Your Door</span>
           </h1>
-          <p className="text-cream-200 text-lg md:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
-            Homemade cookies, brownies & cupcakes baked with love in South East Melbourne.
+          <p className="text-cream-200 text-lg md:text-xl mb-8 max-w-xl mx-auto leading-relaxed">
+            Homemade cookies, brownies &amp; cakes baked with love in South East Melbourne.
             Where every crumb counts.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/products" className="btn-primary">
+            <Link to="/products" className="btn-primary border-2 border-brown-600 hover:border-brown-700">
               Shop Now <ArrowRight className="inline ml-2" size={16} />
             </Link>
             <Link to="/gallery" className="btn-outline border-white text-white hover:bg-white hover:text-brown-700">
@@ -62,7 +62,7 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="py-16 bg-cream-50">
+      <section className="py-16 bg-cream-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             {[
@@ -72,7 +72,7 @@ export default function Home() {
               { icon: MapPin, title: 'Lynbrook Pickup & Delivery', desc: 'Proudly serving Lynbrook and surrounding suburbs, with local pickup available.' },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="p-8">
-                <div className="w-16 h-16 bg-brown-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-cream-50 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Icon size={28} className="text-brown-600" />
                 </div>
                 <h3 className="font-serif text-xl font-semibold text-brown-700 mb-2">{title}</h3>
@@ -93,8 +93,8 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {featured.map((p) => (
-              <div key={p.id} className="card group overflow-hidden">
-                <div className="aspect-square overflow-hidden bg-cream-100">
+              <div key={p.id} className="card group overflow-hidden bg-cream-200 border border-brown-300 hover:border-brown-600 transition-colors duration-300">
+                <div className="aspect-square overflow-hidden bg-cream-100 border-b border-brown-200">
                   {p.image_url ? (
                     <ProductImage
                       src={p.image_url}
@@ -109,7 +109,7 @@ export default function Home() {
                   )}
                 </div>
                 <div className="p-5">
-                  <p className="text-xs text-brown-400 uppercase tracking-widest mb-1">{p.category_name}</p>
+                  <p className="text-xs text-brown-500 uppercase tracking-widest mb-1">{p.category_name}</p>
                   <h3 className="font-serif text-lg font-semibold text-brown-800 mb-1">{p.name}</h3>
                   <p className="text-brown-500 text-sm mb-3 line-clamp-2">{p.description}</p>
                   <p className="text-brown-700 font-bold text-lg">A${parseFloat(p.price).toFixed(2)}</p>
@@ -203,7 +203,7 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {reviews.map((r) => (
-                <div key={r.id} className="bg-white p-8 shadow-sm">
+                <div key={r.id} className="bg-cream-200 p-8 shadow-sm">
                   <div className="stars flex gap-0.5 mb-3">
                     {Array.from({ length: r.rating }).map((_, i) => (
                       <Star key={i} size={16} fill="currentColor" />

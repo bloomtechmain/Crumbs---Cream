@@ -30,7 +30,7 @@ export default function Reviews() {
             <div className="flex items-center justify-center gap-2 mt-4">
               <div className="flex">
                 {[1,2,3,4,5].map(n => (
-                  <span key={n} className={n <= Math.round(avg) ? 'text-amber-400 text-2xl' : 'text-brown-500 text-2xl'}>★</span>
+                  <span key={n} className={n <= Math.round(avg) ? 'text-brown-300 text-2xl' : 'text-brown-500 text-2xl'}>★</span>
                 ))}
               </div>
               <span className="text-cream-200 text-xl font-bold">{avg}</span>
@@ -57,7 +57,7 @@ export default function Reviews() {
                   </div>
                   <div className="flex">
                     {[1,2,3,4,5].map(n => (
-                      <span key={n} className={n <= r.rating ? 'text-amber-400' : 'text-brown-100'}>★</span>
+                      <span key={n} className={n <= r.rating ? 'text-brown-300' : 'text-brown-100'}>★</span>
                     ))}
                   </div>
                 </div>

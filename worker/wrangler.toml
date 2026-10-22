@@ -2,6 +2,13 @@ name = "crumbs-and-cream-gallery"
 main = "src/index.ts"
 compatibility_date = "2026-01-01"
 
+# Customer reference photos uploaded with Custom Cake enquiries.
+# Before the first deploy, create the namespace and paste its id here:
+#   npx wrangler kv namespace create CAKE_PHOTOS
+[[kv_namespaces]]
+binding = "CAKE_PHOTOS"
+id = "REPLACE_WITH_CAKE_PHOTOS_NAMESPACE_ID"
+
 [vars]
 GOOGLE_DRIVE_FOLDER_ID = "1O0xxvztuji7FVgFQ1-S_zY4f9JC1bQ9b"
 

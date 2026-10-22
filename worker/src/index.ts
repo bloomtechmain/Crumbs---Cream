@@ -1,6 +1,7 @@
 import { getAccessToken } from './auth';
 import { getImageStream, listImages } from './drive';
-import { sendOrderEmail } from './email';
+import { MAX_CAKE_PHOTOS, PhotoError, getCakePhoto, storeCakePhotos } from './cakePhotos';
+import { sendEmail, sendOrderEmail } from './email';
 import type { Env } from './types';
 
 const CORS_HEADERS = {
@@ -84,6 +85,37 @@ async function handleOrder(env: Env, request: Request): Promise<Response> {
   }));
 }
 
+async function handleCakeEnquiry(env: Env, request: Request): Promise<Response> {
+  const form = await request.formData().catch(() => null);
+  const summary = form?.get('summary');
+
+  if (typeof summary !== 'string' || !summary.trim()) {
+    return errorResponse('Missing enquiry details.', 400);
+  }
+
+  const photos = form!.getAll('photos').filter((p): p is File => p instanceof File && p.size > 0);
+  if (photos.length > MAX_CAKE_PHOTOS) {
+    return errorResponse(`Please upload at most ${MAX_CAKE_PHOTOS} photos.`, 400);
+  }
+
+  let photoUrls: string[];
+  try {
+    photoUrls = await storeCakePhotos(env, new URL(request.url).origin, photos);
+  } catch (err) {
+    if (err instanceof PhotoError) return errorResponse(err.message, 400);
+    throw err;
+  }
+
+  const message = photoUrls.length
+    ? `${summary}\n\nReference photos:\n${photoUrls.join('\n')}`
+    : summary;
+  await sendEmail(env, message);
+
+  return withCors(new Response(JSON.stringify({ ok: true }), {
+    headers: { 'Content-Type': 'application/json' },
+  }));
+}
+
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     if (request.method === 'OPTIONS') {
@@ -98,12 +130,23 @@ export default {
         return await handleOrder(env, request);
       }
 
+      if (url.pathname === '/api/cake-enquiry') {
+        if (request.method !== 'POST') return errorResponse('Method not allowed', 405);
+        return await handleCakeEnquiry(env, request);
+      }
+
       if (request.method !== 'GET') {
         return errorResponse('Method not allowed', 405);
       }
 
       if (url.pathname === '/api/gallery') {
         return await handleGallery(env, ctx, request);
+      }
+
+      const cakePhotoMatch = url.pathname.match(/^\/api\/cake-photo\/([0-9a-f-]{36})$/);
+      if (cakePhotoMatch) {
+        const photo = await getCakePhoto(env, cakePhotoMatch[1]);
+        return photo ? withCors(photo) : errorResponse('Not found', 404);
       }
 
       const imageMatch = url.pathname.match(/^\/api\/image\/([^/]+)$/);

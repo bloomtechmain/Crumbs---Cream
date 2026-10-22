@@ -50,8 +50,8 @@ export default function Delivery() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {DELIVERY_TIERS.map(({ key, range }) => (
-              <div key={key} className="text-center p-6 border border-brown-100 bg-cream-50">
-                <p className="text-brown-400 text-xs uppercase tracking-widest mb-2">{range}</p>
+              <div key={key} className="text-center p-6 border border-brown-200 bg-cream-200">
+                <p className="text-brown-500 text-xs uppercase tracking-widest mb-2">{range}</p>
                 <p className="font-serif text-xl font-bold text-brown-700">{TIER_FEE_TEXT[key]}</p>
               </div>
             ))}
@@ -99,14 +99,14 @@ export default function Delivery() {
                     <div className="flex items-center gap-3">
                       {available
                         ? <CheckCircle size={20} className="text-green-500" />
-                        : <AlertCircle size={20} className="text-amber-500" />
+                        : <AlertCircle size={20} className="text-brown-300" />
                       }
                       <div>
                         <p className="font-semibold text-brown-700">{day}</p>
                         <p className="text-brown-400 text-sm">{time}</p>
                       </div>
                     </div>
-                    <span className={`text-xs px-3 py-1 ${available ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
+                    <span className={`text-xs px-3 py-1 ${available ? 'bg-green-50 text-green-700' : 'bg-brown-50 text-brown-600'}`}>
                       {available ? 'Available' : 'On Request'}
                     </span>
                   </div>

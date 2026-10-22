@@ -17,13 +17,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src={logo} alt="Crumbs & Cream" className="w-24 h-24 object-contain rounded-full bg-white" />
+              <img src={logo} alt="Crumbs & Cream" className="w-24 h-24 object-contain rounded-full shadow-[0_0_16px_3px_rgba(253,250,243,0.25)]" />
               <div>
                 <p className="font-serif font-bold text-white text-xl">Crumbs & Cream</p>
               </div>
             </div>
             <p className="text-brown-300 text-sm leading-relaxed mb-4">
-              Homemade cookies, brownies & cupcakes baked with love in South East Melbourne.
+              Homemade cookies, brownies &amp; cakes baked with love in South East Melbourne.
               Where every crumb counts.
             </p>
           </div>

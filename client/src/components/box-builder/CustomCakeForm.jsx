@@ -358,15 +358,18 @@ export default function CustomCakeForm() {
         <legend><StepLabel number={7}>Your details *</StepLabel></legend>
         <div className="grid sm:grid-cols-3 gap-4">
           <div>
-            <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name" aria-label="Full name" autoComplete="name" className={inputClass} />
+            <label htmlFor="cake-name" className="block text-xs font-semibold uppercase tracking-wide text-brown-500 mb-1.5">Name</label>
+            <input id="cake-name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name" autoComplete="name" className={inputClass} />
             <FieldError message={err('name')} />
           </div>
           <div>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" aria-label="Email" autoComplete="email" className={inputClass} />
+            <label htmlFor="cake-email" className="block text-xs font-semibold uppercase tracking-wide text-brown-500 mb-1.5">Email</label>
+            <input id="cake-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" autoComplete="email" className={inputClass} />
             <FieldError message={err('email')} />
           </div>
           <div>
-            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="04xx xxx xxx" aria-label="Phone number" autoComplete="tel" className={inputClass} />
+            <label htmlFor="cake-phone" className="block text-xs font-semibold uppercase tracking-wide text-brown-500 mb-1.5">Phone</label>
+            <input id="cake-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="04xx xxx xxx" autoComplete="tel" className={inputClass} />
             <FieldError message={err('phone')} />
           </div>
         </div>

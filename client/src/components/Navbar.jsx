@@ -18,7 +18,13 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    // Shrinking the sticky nav shortens the page by up to 64px, which pulls
+    // scrollY back down. A single threshold would flip-flop (flicker), so
+    // shrink and expand at points further apart than that height change.
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled((prev) => (prev ? y > 10 : y > 100));
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);

@@ -5,7 +5,7 @@ import { formatPrice } from './orderSummary';
 import ProductImage from '../ProductImage';
 
 const FlavourAllocatorBuilder = forwardRef(function FlavourAllocatorBuilder(
-  { title, subtitle, unitLabel, sizes, flavours, emoji, onCommit, onPendingChange, priceOverride, tierGroups, allowPartial = false, sizePrice, showUnitPrice = true },
+  { title, subtitle, unitLabel, sizes, flavours, emoji, onCommit, onPendingChange, priceOverride, tierGroups, allowPartial = false, sizePrice, showUnitPrice = true, threeColumns = false },
   ref
 ) {
   const [size, setSize] = useState(sizes[0]);
@@ -117,22 +117,23 @@ const FlavourAllocatorBuilder = forwardRef(function FlavourAllocatorBuilder(
                 <h4 className="text-sm font-bold uppercase tracking-widest text-brown-700">{group.label}</h4>
                 <span className="text-xs text-brown-400">{group.note}</span>
               </div>
-              <FlavourGrid flavours={groupFlavours} allocation={allocation} remaining={remaining} emoji={emoji} setQty={setQty} addOne={addOne} showUnitPrice={showUnitPrice} />
+              <FlavourGrid flavours={groupFlavours} allocation={allocation} remaining={remaining} emoji={emoji} setQty={setQty} addOne={addOne} showUnitPrice={showUnitPrice} threeColumns={threeColumns} />
             </div>
           );
         })
       ) : (
         <div className="mb-6">
-          <FlavourGrid flavours={flavours} allocation={allocation} remaining={remaining} emoji={emoji} setQty={setQty} addOne={addOne} showUnitPrice={showUnitPrice} />
+          <FlavourGrid flavours={flavours} allocation={allocation} remaining={remaining} emoji={emoji} setQty={setQty} addOne={addOne} showUnitPrice={showUnitPrice} threeColumns={threeColumns} />
         </div>
       )}
     </div>
   );
 });
 
-function FlavourGrid({ flavours, allocation, remaining, emoji, setQty, addOne, showUnitPrice }) {
+function FlavourGrid({ flavours, allocation, remaining, emoji, setQty, addOne, showUnitPrice, threeColumns }) {
+  // threeColumns keeps a 9-flavour range as a tidy 3x3 on desktop instead of 4+4+1.
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className={`grid grid-cols-2 sm:grid-cols-3 gap-4 ${threeColumns ? '' : 'lg:grid-cols-4'}`}>
       {flavours.map(f => {
         const qty = allocation[f.id] || 0;
         const canAdd = remaining > 0;
@@ -155,7 +156,7 @@ function FlavourGrid({ flavours, allocation, remaining, emoji, setQty, addOne, s
                 <ProductImage
                   src={f.image_url}
                   alt={f.name}
-                  sizes="(min-width:1024px) 230px, (min-width:640px) 300px, 45vw"
+                  sizes={threeColumns ? "(min-width:640px) 300px, 45vw" : "(min-width:1024px) 230px, (min-width:640px) 300px, 45vw"}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               ) : (

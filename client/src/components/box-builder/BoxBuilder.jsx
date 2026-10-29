@@ -166,6 +166,7 @@ export default function BoxBuilder() {
                   priceOverride={brownieBoxPrice}
                   sizePrice={(size) => BROWNIE_BOX_PRICES[size]}
                   showUnitPrice={false}
+                  threeColumns
                   emoji={CATEGORY_EMOJI.brownies}
                   onCommit={handleCommit}
                   onPendingChange={setPending}
